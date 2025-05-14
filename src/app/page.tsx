@@ -1,8 +1,10 @@
+
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import InsightSummary from '@/components/InsightSummary';
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory } from 'lucide-react'; // Imports remain for other uses or future use
+import { Separator } from '@/components/ui/separator';
 
 // Mock Data
 const topSectorsData: SectorData[] = [
@@ -77,9 +79,10 @@ export default function HomePage() {
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-header-main-title mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200">
+          <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
+          <Separator className="my-6 sm:my-8 max-w-2xl mx-auto" />
         </div>
       </header>
 
