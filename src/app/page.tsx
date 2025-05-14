@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState, useEffect } from 'react';
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import Footer from '@/components/Footer'; // Import Footer
@@ -43,7 +46,7 @@ const topSectorsData: SectorData[] = [
     valueUnit: '%', // Changed to % as per image
     iconName: 'Zap',
     topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
-    description: "Rapid expansion fueled by global sustainability initiatives and tech improvements.",
+    description: "Growth Overview by Segment",
     dataAiHint: "segment growth"
   },
 ];
@@ -107,12 +110,7 @@ const segments = [
   'Transportation & Tourism',
 ];
 
-// Generate data for the segment performance table
-const segmentPerformanceData = segments.map(segment => ({
-  segment, growth: generateRandomGrowth() }));
-
 function generateRandomGrowth() {
-  // Ensure this function runs only on the client or is consistent
   return Math.floor(Math.random() * (250 - (-20) + 1)) + (-20);
 }
 
@@ -125,6 +123,16 @@ const bubbleChartData: BubbleChartDataPoint[] = [
 ];
 
 export default function HomePage() {
+  const [segmentPerformanceData, setSegmentPerformanceData] = useState<{segment: string, growth: number}[]>([]);
+
+  useEffect(() => {
+    const data = segments.map(segment => ({
+      segment, growth: generateRandomGrowth()
+    }));
+    setSegmentPerformanceData(data);
+  }, []); // Empty dependency array ensures this runs once on mount (client-side)
+
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <ConfettiAnimation /> {/* Render confetti directly here for testing */}
@@ -161,33 +169,33 @@ export default function HomePage() {
            <TopSectorSpotlight sector={topSectorsData[1]} />
         </section>
 
-        {/* Section 4: Top Sector Spotlight - Segment Performance */}
-        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
-           <TopSectorSpotlight sector={topSectorsData[2]} />
-        </section>
-
-        {/* Section 5: Segment Performance Table */}
+        {/* Section 4: Top Sector Spotlight - Segment Performance & Table */}
         <section className="w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Segment Performance</h2>
-            <p className="text-lg text-muted-foreground">Growth Overview by Segment</p>
-          </div>
-          {/* Added styling for light grey background and width */}
-          <div className="bg-gray-100 p-4 rounded-lg" style={{ width: '372px' }}>
+           <TopSectorSpotlight sector={topSectorsData[2]} />
+           {/* Table for Segment Performance */}
+           <div className="mt-8 bg-gray-100 p-4 rounded-lg shadow-lg" style={{ width: '372px' }}> {/* Added shadow-lg and mt-8 */}
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Segments</TableHead>
-                  <TableHead>Growth</TableHead>
+                  <TableHead className="text-muted-foreground">Segments</TableHead>
+                  <TableHead className="text-muted-foreground text-right">Growth</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {segmentPerformanceData.map(({ segment, growth }) => (
-                  <TableRow key={segment}>
-                    <TableCell className="font-medium">{segment}</TableCell>
-                    <TableCell>{growth}%</TableCell>
+                {segmentPerformanceData.length > 0 ? (
+                  segmentPerformanceData.map(({ segment, growth }) => (
+                    <TableRow key={segment}>
+                      <TableCell className="font-medium text-foreground">{segment}</TableCell>
+                      <TableCell className="text-right text-foreground">{growth}%</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={2} className="text-center text-muted-foreground py-10">
+                      Loading segment data...
+                    </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </div>
