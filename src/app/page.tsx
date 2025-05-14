@@ -6,6 +6,7 @@ import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
 import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react';
+import ConfettiAnimation from '@/components/ConfettiAnimation'; // Import ConfettiAnimation
 
 // Mock Data
 const topSectorsData: SectorData[] = [
@@ -126,6 +127,7 @@ const bubbleChartData: BubbleChartDataPoint[] = [
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <ConfettiAnimation /> {/* Render confetti directly here for testing */}
       {/* Page Header */}
       <header className="py-12 sm:py-16 text-center">
         <div className="container mx-auto px-4">
@@ -142,7 +144,7 @@ export default function HomePage() {
       <main className="flex-grow">
         {/* Section 1: Top Sector Spotlight - Best Performing */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} />
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} /> {/* Pass showConfetti=false */}
         </section>
 
         {/* Section 2: Sector Bubble Chart */}
