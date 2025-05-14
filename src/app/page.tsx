@@ -158,7 +158,7 @@ export default function HomePage() {
         {/* Section 2: Sector Bubble Chart */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
           <div className="text-center mb-8">
-            <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Sector Landscape</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">Sector Landscape</h2>
             <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
           </div>
           <SectorBubbleChart data={bubbleChartData} />
