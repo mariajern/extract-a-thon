@@ -42,7 +42,6 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
 
-      {/* Render children here for the default layout, if provided */}
       {!shouldShowDetailedLayout && children}
 
       {shouldShowDetailedLayout ? (
@@ -129,7 +128,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       ) : (
         // Default layout for other sectors (children will be rendered above this if provided)
         <div className="w-full flex flex-col md:flex-row gap-6 mt-8 max-w-3xl">
-          <div className="w-full flex-1 flex flex-col gap-6">
+          <div className="flex-1">
             <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
               <CardHeader className="p-3">
                 <CardTitle className="text-primary text-2xl text-center">
@@ -158,16 +157,18 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
               </CardContent>
             </Card>
           </div>
-          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full md:w-1/2">
-            <CardHeader className="p-3">
-              <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
-            </CardHeader>
-            <CardContent className="p-3 pt-0">
-              <ul className="space-y-2 text-center">
-                {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="flex-1">
+            <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
+              <CardHeader className="p-3">
+                <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
+              </CardHeader>
+              <CardContent className="p-3 pt-0">
+                <ul className="space-y-2 text-center">
+                  {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       )}
     </div>
