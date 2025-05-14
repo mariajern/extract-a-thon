@@ -150,20 +150,24 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <ConfettiAnimation />
-      <header className="py-24 sm:py-32 text-center">
+      <header className="bg-card py-24 sm:py-32 text-center"> {/* White background */}
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-header-main-title mb-4 animate-fade-in-down">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
           <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
           <Separator className="my-8 h-1 bg-muted-foreground" />
-          <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary text-center mt-6 mb-16 animate-fade-in-up delay-300">
-            The best performing sector is ...
-          </p>
         </div>
       </header>
+
+      {/* "The best performing sector is ..." now outside the header, on the main page background */}
+      <div className="container mx-auto px-4 text-center">
+        <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary text-center mt-6 mb-16 animate-fade-in-up delay-300">
+          The best performing sector is ...
+        </p>
+      </div>
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
@@ -250,3 +254,4 @@ export default function HomePage() {
   );
 }
 
+    
