@@ -160,12 +160,15 @@ export default function HomePage() {
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
           <Separator className="my-8 h-1 bg-muted-foreground" />
+          <p className="text-lg text-muted-foreground text-center mt-6 mb-10 animate-fade-in-up delay-300">
+            The results by sector...
+          </p>
         </div>
       </header>
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} />
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
