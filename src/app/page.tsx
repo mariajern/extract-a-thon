@@ -1,9 +1,9 @@
 
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
-// import InsightSummary from '@/components/InsightSummary'; // Removed
+import Footer from '@/components/Footer'; // Import Footer
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
-import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react'; // Added Trophy
+import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react'; 
 import { Separator } from '@/components/ui/separator';
 
 // Mock Data
@@ -15,7 +15,7 @@ const topSectorsData: SectorData[] = [
     currentValue: 22,
     comparisonValue: 15,
     valueUnit: '%',
-    iconName: 'Trophy', // Changed from 'Cpu' to 'Trophy'
+    iconName: 'Trophy', 
     topCompanies: ['Innovate Corp', 'Future Solutions', 'Digital Dynamics'],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
@@ -47,8 +47,7 @@ const topSectorsData: SectorData[] = [
 ];
 
 const bubbleChartSectors: SectorData[] = [
-  // Ensure Trophy is available if bubbleChartSectors uses iconName from topSectorsData directly or has its own mapping
-  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' }, // Tech uses Trophy here too
+  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' }, 
   { ...topSectorsData[1], id: 'bubble_health', iconName: 'HeartPulse' }, 
   { 
     id: 'bubble_finance', 
@@ -73,7 +72,7 @@ const bubbleChartData: BubbleChartDataPoint[] = [
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col bg-background text-foreground">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Page Header */}
       <header className="py-12 sm:py-16 text-center">
         <div className="container mx-auto px-4">
@@ -87,34 +86,33 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Section 1: Top Sector Spotlight - Best Performing */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative overflow-hidden">
-        <TopSectorSpotlight sector={topSectorsData[0]} />
-        {/* InsightSummary removed from here */}
-      </section>
+      <main className="flex-grow">
+        {/* Section 1: Top Sector Spotlight - Best Performing */}
+        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+          <TopSectorSpotlight sector={topSectorsData[0]} />
+        </section>
 
-      {/* Section 2: Sector Bubble Chart (Moved) */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Sector Landscape</h2>
-          <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
-        </div>
-        <SectorBubbleChart data={bubbleChartData} />
-        {/* InsightSummary removed from here */}
-      </section>
+        {/* Section 2: Sector Bubble Chart */}
+        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Sector Landscape</h2>
+            <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
+          </div>
+          <SectorBubbleChart data={bubbleChartData} />
+        </section>
 
-      {/* Section 3: Top Sector Spotlight - Second Best */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-         <TopSectorSpotlight sector={topSectorsData[1]} />
-         {/* InsightSummary removed from here */}
-      </section>
+        {/* Section 3: Top Sector Spotlight - Second Best */}
+        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+           <TopSectorSpotlight sector={topSectorsData[1]} />
+        </section>
+        
+        {/* Section 4: Top Sector Spotlight - Third Best */}
+        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+           <TopSectorSpotlight sector={topSectorsData[2]} />
+        </section>
+      </main>
       
-      {/* Section 4: Top Sector Spotlight - Third Best */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-         <TopSectorSpotlight sector={topSectorsData[2]} />
-         {/* InsightSummary removed from here */}
-      </section>
-
-    </main>
+      <Footer />
+    </div>
   );
 }

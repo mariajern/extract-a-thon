@@ -58,6 +58,14 @@
 
     /* Custom color for the main page header title */
     --header-main-title-foreground: 63 94% 72%; /* HEX #F3FA76 */
+
+    /* Footer Colors */
+    --footer-background: 30 10% 35%; /* Approx #6B6259 - Adjusted from image */
+    --footer-foreground: 0 0% 95%; /* Light grey/white text */
+    --footer-link: 0 0% 85%; /* Slightly dimmer for links */
+    --footer-button-background: 30 10% 40%; /* Slightly lighter for buttons e.g. #7A716A */
+    --footer-button-border: 30 10% 50%; /* Border for buttons e.g. #938B84 */
+    --footer-heading-foreground: 0 0% 70%; /* Dimmer color for column headings */
   }
 }
 
@@ -74,3 +82,6 @@
   }
   /* Subtitles on the main page use text-muted-foreground, which is now #655E56 */
 }
+
+/* Remove old confetti animations */
+/* No more confetti-fall or confetti-spin keyframes */

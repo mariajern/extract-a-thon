@@ -65,6 +65,14 @@ export default {
   				ring: 'hsl(var(--sidebar-ring))'
   			},
         'header-main-title': 'hsl(var(--header-main-title-foreground))',
+        footer: {
+          DEFAULT: 'hsl(var(--footer-background))',
+          foreground: 'hsl(var(--footer-foreground))',
+          link: 'hsl(var(--footer-link))',
+          'button-background': 'hsl(var(--footer-button-background))',
+          'button-border': 'hsl(var(--footer-button-border))',
+          'heading-foreground': 'hsl(var(--footer-heading-foreground))',
+        }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -87,11 +95,33 @@ export default {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+         'fade-in-down': {
+            '0%': {
+              opacity: '0',
+              transform: 'translateY(-20px)',
+            },
+            '100%': {
+              opacity: '1',
+              transform: 'translateY(0)',
+            },
+          },
+          'fade-in-up': {
+            '0%': {
+              opacity: '0',
+              transform: 'translateY(20px)',
+            },
+            '100%': {
+              opacity: '1',
+              transform: 'translateY(0)',
+            },
+          },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in-down': 'fade-in-down 0.5s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
   		}
   	}
   },
