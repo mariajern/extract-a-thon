@@ -5,13 +5,13 @@ import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import Image from 'next/image'; // Import next/image
-import ConfettiAnimation from './ConfettiAnimation'; // Import ConfettiAnimation
+import Image from 'next/image';
+import ConfettiAnimation from './ConfettiAnimation';
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
-  showConfetti?: boolean; // Optional prop to control confetti
-  children?: React.ReactNode; // Allow children to be passed
+  showConfetti?: boolean;
+  children?: React.ReactNode;
 }
 
 const iconComponents: Record<string, LucideIcon> = {
@@ -39,8 +39,8 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
         )}
         {sector.id === 'tech' && showConfetti && <ConfettiAnimation />}
       </div>
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">{sector.name}</h1>
-      <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-down">{sector.name}</h1>
+      <p className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in-up delay-200">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
 
       {!shouldShowDetailedLayout && children}
 
@@ -174,3 +174,4 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     </div>
   );
 }
+

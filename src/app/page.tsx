@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
-import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react';
 import ConfettiAnimation from '@/components/ConfettiAnimation';
 
 // Mock Data
@@ -151,7 +150,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <ConfettiAnimation />
-      <header className="py-12 sm:py-16 text-center">
+      <header className="py-24 sm:py-32 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-header-main-title mb-4 animate-fade-in-down">
             The EQT Sector Race
@@ -168,7 +167,7 @@ export default function HomePage() {
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} />
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
