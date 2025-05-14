@@ -5,6 +5,7 @@ import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
 import ConfettiAnimation from './ConfettiAnimation';
+import Image from 'next/image'; // Import next/image
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
@@ -38,7 +39,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-8">
-        {/* Column 1: Performance Metric Card + New "At a glance" Card */}
+        {/* Column 1: Performance Metric Card + "At a glance" Card */}
         <div className="flex flex-col gap-6 h-full">
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
             <CardHeader className="p-3">
@@ -56,34 +57,51 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
             </CardContent>
           </Card>
 
-          {/* New "At a glance" Card */}
-          {sector.id === 'tech' && ( // Conditionally render this card for the Technology sector for now, adjust as needed
-            <Card className="bg-[#85215D] text-white shadow-xl">
-              <CardHeader className="p-3">
-                <CardTitle className="text-white text-2xl">At a glance</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3 pt-0 space-y-3">
-                <div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span>Sector Size</span>
-                    <span className="font-semibold">10-60M EUR</span>
-                  </div>
-                  <hr className="border-white/30 my-2" />
+          {/* "At a glance" Card with Image */}
+          {sector.id === 'tech' && (
+            <Card className="bg-[#85215D] text-white shadow-xl border border-[#85215D]">
+              <div className="flex flex-row items-start p-3">
+                {/* Text Content Area */}
+                <div className="flex-1 space-y-1">
+                  <CardHeader className="p-0">
+                    <CardTitle className="text-white text-2xl text-left">At a glance</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0 space-y-2 text-left">
+                    <div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span>Sector Size</span>
+                        <span className="font-semibold">10-60M EUR</span>
+                      </div>
+                      <hr className="border-white/30 my-1" />
+                    </div>
+                    <div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span>Sector companies</span>
+                        <span className="font-semibold">65+</span>
+                      </div>
+                      <hr className="border-white/30 my-1" />
+                    </div>
+                    <div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span>Investment Advisory Professionals</span>
+                        <span className="font-semibold">30+</span>
+                      </div>
+                    </div>
+                  </CardContent>
                 </div>
-                <div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span>Sector companies</span>
-                    <span className="font-semibold">65+</span>
-                  </div>
-                  <hr className="border-white/30 my-2" />
+
+                {/* Image Area */}
+                <div className="ml-4 flex-shrink-0">
+                  <Image
+                    src="https://placehold.co/100x120.png"
+                    alt="Technology Sector Visual"
+                    width={100}
+                    height={120}
+                    className="rounded-md object-cover"
+                    data-ai-hint="technology innovation"
+                  />
                 </div>
-                <div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span>Investment Advisory Professionals</span>
-                    <span className="font-semibold">30+</span>
-                  </div>
-                </div>
-              </CardContent>
+              </div>
             </Card>
           )}
         </div>
