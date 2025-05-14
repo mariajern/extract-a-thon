@@ -1,74 +1,65 @@
 // src/components/ConfettiAnimation.tsx
 "use client";
 
-import type { CSSProperties } from 'react';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import ReactConfetti from 'react-confetti';
 
 const CONFETTI_COLORS = ['hsl(var(--accent))', 'hsl(var(--primary))', '#FF00FF', '#FFFF00', '#FF0000']; // Teal, Dark Blue, Magenta, Yellow, Red
-const NUM_CONFETTI = 60; // Increased for more visual impact
-// FALL_DISTANCE constant is not directly used by CSS keyframes, but represents intended design.
-// The actual fall distance is controlled by `translateY` in `globals.css @keyframes confetti-fall`.
-
-interface ConfettiPiece {
-  id: number;
-  style: CSSProperties;
-}
 
 const ConfettiAnimation = () => {
-  const [pieces, setPieces] = useState<ConfettiPiece[]>([]);
+  const [windowSize, setWindowSize] = useState<{ width: number | undefined; height: number | undefined }>({
+    width: undefined,
+    height: undefined,
+  });
+  const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
-    const newPieces: ConfettiPiece[] = [];
-    for (let i = 0; i < NUM_CONFETTI; i++) {
-      const fallDuration = Math.random() * 2 + 2.5; // 2.5s to 4.5s (increased duration)
-      const spinDuration = Math.random() * 2 + 1.5;  // 1.5s to 3.5s
-      const delay = Math.random() * 0.5; // Stagger start times slightly
-
-      newPieces.push({
-        id: i,
-        style: {
-          position: 'absolute',
-          width: `${Math.random() * 6 + 5}px`, // 5px to 11px wide
-          height: `${Math.random() * 10 + 8}px`, // 8px to 18px long
-          backgroundColor: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-          left: `${Math.random() * 100}%`, // Spread horizontally across the container
-          top: `${Math.random() * 40 - 20}%`, // Start clustered vertically around the center (50% +/- 20%)
-          opacity: 1,
-          transformOrigin: 'center center',
-          animation: `confetti-fall ${fallDuration}s ${delay}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards, 
-                      confetti-spin ${spinDuration}s ${delay}s linear infinite`,
-          // @ts-ignore for custom CSS variable
-          '--initial-z-rotation': `${Math.random() * 360}deg`,
-        },
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
       });
     }
-    setPieces(newPieces);
 
-    // Removed cleanup timer to make confetti persist
-    // const timer = setTimeout(() => {
-    //     setPieces([]);
-    // }, Math.max(...newPieces.map(p => parseFloat(p.style.animationDuration?.split(',')[0] || '3') * 1000 + parseFloat(p.style.animationDelay?.split(',')[0] || '0.5') * 1000)) + 500);
-    // return () => clearTimeout(timer);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Set initial size
+
+      const timer = setTimeout(() => {
+        setIsRunning(false); // Stop emitting new confetti after 5 seconds
+      }, 5000);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        clearTimeout(timer);
+      };
+    }
   }, []);
 
+  if (typeof windowSize.width === 'undefined' || typeof windowSize.height === 'undefined') {
+    return null; // Don't render on server or before size is known
+  }
+
   return (
-    <div 
-      style={{ 
-        position: 'absolute', 
-        top: 'calc(50% - 90px)', // Adjusted: from -50px to -90px to raise origin (burst higher)
-        left: 'calc(50% - 100px)', 
-        width: '200px', 
-        height: '1px', 
-        pointerEvents: 'none', 
-        zIndex: 10,
-        overflow: 'visible'
+    <ReactConfetti
+      width={windowSize.width}
+      height={windowSize.height}
+      numberOfPieces={isRunning ? 250 : 0} // Emit 250 pieces initially, then 0
+      recycle={false} // Pieces disappear when off-screen
+      gravity={0.15} // A bit lighter gravity
+      initialVelocityX={{ min: -10, max: 10 }} // Horizontal spread
+      initialVelocityY={{ min: -20, max: -10 }} // Upward burst strength
+      colors={CONFETTI_COLORS}
+      // Approximate source from the center of the screen, slightly above, to simulate bursting from the cup area
+      confettiSource={{
+        x: windowSize.width / 2,
+        y: windowSize.height / 2 - 80, // Adjust Y to be higher, simulating bursting from the cup
+        w: 20, // Small source area width
+        h: 20, // Small source area height
       }}
-      aria-hidden="true"
-    >
-      {pieces.map((piece) => (
-        <div key={piece.id} style={piece.style} />
-      ))}
-    </div>
+      run={true} // Keep run=true; numberOfPieces controls emission. If run=false, existing pieces might be removed immediately by the library.
+      style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1000, pointerEvents: 'none' }}
+    />
   );
 };
 
