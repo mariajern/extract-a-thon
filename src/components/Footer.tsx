@@ -31,7 +31,24 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         {/* Top Section: Logo and Tagline */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold mb-4">EQT</h2>
+          {/* EQT SVG Logo */}
+          <svg 
+            width="160" 
+            height="50" 
+            viewBox="0 0 160 50" 
+            fill="currentColor" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="mx-auto mb-4"
+            aria-label="EQT Logo"
+          >
+            {/* E */}
+            <path d="M0 0H30V8H8V19H25V27H8V42H30V50H0V0Z" />
+            {/* Q */}
+            <path fillRule="evenodd" clipRule="evenodd" d="M75 25C75 11.1929 63.8071 0 50 0C36.1929 0 25 11.1929 25 25C25 38.8071 36.1929 50 50 50C63.8071 50 75 38.8071 75 25ZM33 25C33 15.6112 40.6112 8 50 8C59.3888 8 67 15.6112 67 25C67 34.3888 59.3888 42 50 42C40.6112 42 33 34.3888 33 25Z" transform="translate(35, 0)" />
+            <path d="M53 35L67 49L70 45L57 31H53V35Z" transform="translate(35, 0)" />
+            {/* T */}
+            <path d="M0 0H30V8H19V50H11V8H0V0Z" transform="translate(130, 0)" />
+          </svg>
           <p className="text-3xl text-footer-foreground">
             A Purpose-Driven Global Investment Organization
           </p>
