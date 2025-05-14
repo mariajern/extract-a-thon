@@ -155,10 +155,13 @@ export default function HomePage() {
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
+          <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-2">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
           <Separator className="my-8 h-1 bg-muted-foreground" />
+          <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
+            Understand how EQT sectors and portfolio companies perform against market competitors
+          </p>
         </div>
       </header>
 
