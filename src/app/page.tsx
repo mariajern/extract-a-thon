@@ -11,7 +11,7 @@ const topSectorsData: SectorData[] = [
   {
     id: 'tech',
     name: 'Technology',
-    performanceMetricName: 'YoY Growth',
+    performanceMetricName: '5-Year Growth*', // Updated
     currentValue: 22,
     comparisonValue: 15,
     valueUnit: '%',
@@ -91,7 +91,7 @@ export default function HomePage() {
         <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative overflow-hidden">
           <TopSectorSpotlight sector={topSectorsData[0]} />
         </section>
-
+        
         {/* Section 2: Sector Bubble Chart */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
           <div className="text-center mb-8">

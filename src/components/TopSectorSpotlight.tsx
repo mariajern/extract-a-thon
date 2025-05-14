@@ -2,9 +2,8 @@
 
 import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react'; // Added Trophy
-// import Image from 'next/image'; // Removed
-import ConfettiAnimation from './ConfettiAnimation'; // Import ConfettiAnimation
+import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
+import ConfettiAnimation from './ConfettiAnimation';
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
@@ -15,7 +14,7 @@ const iconComponents: Record<string, LucideIcon> = {
   HeartPulse,
   Zap,
   Landmark,
-  Trophy, // Added Trophy to the map
+  Trophy,
 };
 
 export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) {
@@ -48,7 +47,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
             <p className="text-5xl font-bold text-accent">{sector.currentValue}{valueSuffix}</p>
             <p className={`text-lg flex items-center justify-center mt-2 ${isPositiveChange ? 'text-accent' : 'text-destructive'}`}>
               {isPositiveChange ? <TrendingUp className="mr-2 h-5 w-5" /> : <TrendingDown className="mr-2 h-5 w-5" />}
-              {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}{valueSuffix} vs comparison
+              {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}{valueSuffix} vs Market
             </p>
           </CardContent>
         </Card>
@@ -66,7 +65,6 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
         </Card>
       </div>
       
-      {/* Image component removed */}
     </div>
   );
 }
