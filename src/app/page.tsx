@@ -111,6 +111,10 @@ const segments = [
 ];
 
 function generateRandomGrowth() {
+  // Ensure this function only runs on the client
+  if (typeof window === 'undefined') {
+    return 0; // Or some default server value
+  }
   return Math.floor(Math.random() * (250 - (-20) + 1)) + (-20);
 }
 
@@ -140,7 +144,7 @@ export default function HomePage() {
   }, [sortedSegmentData]);
 
   const leastPerformingSegments = useMemo(() => {
-    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth);
+    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth); // Sorts already negative numbers correctly (least growth first)
   }, [sortedSegmentData]);
 
 
@@ -161,7 +165,7 @@ export default function HomePage() {
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} />
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
@@ -175,9 +179,7 @@ export default function HomePage() {
         </section>
 
         <section className="w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
-           <TopSectorSpotlight sector={topSectorsData[2]} />
-           
-           <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto">
+           <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto mb-12">
              {segmentPerformanceData.length === 0 ? (
                 <div className="w-full text-center text-muted-foreground py-10 col-span-1 md:col-span-2">
                   Loading segment data...
@@ -238,6 +240,7 @@ export default function HomePage() {
                </>
              )}
            </div>
+           <TopSectorSpotlight sector={topSectorsData[2]} />
         </section>
       </main>
 
@@ -245,4 +248,3 @@ export default function HomePage() {
     </div>
   );
 }
-
