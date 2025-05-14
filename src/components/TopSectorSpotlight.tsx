@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { SectorData } from '@/lib/types';
@@ -49,11 +50,12 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
               {isPositiveChange ? <TrendingUp className="mr-2 h-5 w-5" /> : <TrendingDown className="mr-2 h-5 w-5" />}
               {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}{valueSuffix} vs Market
             </p>
+            <p className="text-xs text-muted-foreground mt-4">* Gross margin</p>
           </CardContent>
         </Card>
         <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
           <CardHeader>
-            <CardTitle className="text-primary text-2xl text-center">Top Performers</CardTitle>
+            <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-center">
