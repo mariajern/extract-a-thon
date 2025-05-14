@@ -39,7 +39,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-8">
         {/* Column 1: Performance Metric Card + New "At a glance" Card */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 h-full">
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
             <CardHeader className="p-3">
               <CardTitle className="text-primary flex items-center justify-center text-2xl">
@@ -65,14 +65,14 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
               <CardContent className="p-3 pt-0 space-y-3">
                 <div>
                   <div className="flex justify-between items-center text-sm">
-                    <span>Investment range</span>
+                    <span>Sector Size</span>
                     <span className="font-semibold">10-60M EUR</span>
                   </div>
                   <hr className="border-white/30 my-2" />
                 </div>
                 <div>
                   <div className="flex justify-between items-center text-sm">
-                    <span>Portfolio companies</span>
+                    <span>Sector companies</span>
                     <span className="font-semibold">65+</span>
                   </div>
                   <hr className="border-white/30 my-2" />
@@ -89,7 +89,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
         </div>
 
         {/* Column 2: Top EQT Sector companies Card */}
-        <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-fit"> {/* Added h-fit to prevent stretching if col1 is taller */}
+        <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
           <CardHeader className="p-3">
             <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
           </CardHeader>
