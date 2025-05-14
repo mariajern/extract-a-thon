@@ -165,10 +165,8 @@ export default function HomePage() {
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">Sector Landscape</h2>
-            <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
-          </div>
+           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 text-center">Sector Landscape</h2>
+            <p className="text-lg text-muted-foreground text-center mb-8">Top Sectors vs. Public Market Performance</p>
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
@@ -191,15 +189,21 @@ export default function HomePage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground">Segments</TableHead>
-                        <TableHead className="text-muted-foreground text-right">Growth</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold">Segments</TableHead>
+                        <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {topPerformingSegments.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground">{segment}</TableCell>
-                          <TableCell className="text-right text-foreground">{growth}%</TableCell>
+                          <TableCell 
+                            className={`text-right font-medium ${
+                              growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
+                            }`}
+                          >
+                            {growth}%
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -211,15 +215,21 @@ export default function HomePage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground">Segments</TableHead>
-                        <TableHead className="text-muted-foreground text-right">Growth</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold">Segments</TableHead>
+                        <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {leastPerformingSegments.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground">{segment}</TableCell>
-                          <TableCell className="text-right text-foreground">{growth}%</TableCell>
+                          <TableCell 
+                            className={`text-right font-medium ${
+                              growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
+                            }`}
+                          >
+                            {growth}%
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -235,3 +245,4 @@ export default function HomePage() {
     </div>
   );
 }
+
