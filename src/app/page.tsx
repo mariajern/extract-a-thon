@@ -167,7 +167,7 @@ export default function HomePage() {
 
       {/* "The best performing sector is ..." now outside the header, on the main page background */}
       <div className="container mx-auto px-4 text-center">
-        <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary text-center mt-6 mb-16 animate-fade-in-up delay-300">
+        <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary text-center mt-6 mb-32 animate-fade-in-up delay-300">
           The best performing sector is ...
         </p>
       </div>
