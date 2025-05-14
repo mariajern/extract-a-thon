@@ -4,7 +4,7 @@
 import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 
-const CONFETTI_COLORS = ['hsl(var(--accent))', 'hsl(var(--primary))', '#FF00FF']; // Teal, Dark Blue, Magenta
+const CONFETTI_COLORS = ['hsl(var(--accent))', 'hsl(var(--primary))', '#FF00FF', '#FFFF00', '#FF0000']; // Teal, Dark Blue, Magenta, Yellow, Red
 const NUM_CONFETTI = 60; // Increased for more visual impact
 // FALL_DISTANCE constant is not directly used by CSS keyframes, but represents intended design.
 // The actual fall distance is controlled by `translateY` in `globals.css @keyframes confetti-fall`.
@@ -55,7 +55,7 @@ const ConfettiAnimation = () => {
     <div 
       style={{ 
         position: 'absolute', 
-        top: 'calc(50% - 50px)', // Adjusted: from -100px to -50px to raise origin (closer to cup's mouth)
+        top: 'calc(50% - 90px)', // Adjusted: from -50px to -90px to raise origin (burst higher)
         left: 'calc(50% - 100px)', 
         width: '200px', 
         height: '1px', 
