@@ -93,19 +93,7 @@ export default function HomePage() {
         {/* InsightSummary removed from here */}
       </section>
 
-      {/* Section 2: Top Sector Spotlight - Second Best */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-         <TopSectorSpotlight sector={topSectorsData[1]} />
-         {/* InsightSummary removed from here */}
-      </section>
-      
-      {/* Section 3: Top Sector Spotlight - Third Best */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-         <TopSectorSpotlight sector={topSectorsData[2]} />
-         {/* InsightSummary removed from here */}
-      </section>
-
-      {/* Section 4: Sector Bubble Chart */}
+      {/* Section 2: Sector Bubble Chart (Moved) */}
       <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
         <div className="text-center mb-8">
           <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Sector Landscape</h2>
@@ -114,6 +102,19 @@ export default function HomePage() {
         <SectorBubbleChart data={bubbleChartData} />
         {/* InsightSummary removed from here */}
       </section>
+
+      {/* Section 3: Top Sector Spotlight - Second Best */}
+      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+         <TopSectorSpotlight sector={topSectorsData[1]} />
+         {/* InsightSummary removed from here */}
+      </section>
+      
+      {/* Section 4: Top Sector Spotlight - Third Best */}
+      <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+         <TopSectorSpotlight sector={topSectorsData[2]} />
+         {/* InsightSummary removed from here */}
+      </section>
+
     </main>
   );
 }
