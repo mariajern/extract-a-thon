@@ -110,14 +110,14 @@ export default function TopSectorSpotlight({ sector, showConfetti = true }: TopS
               </div>
             </CardContent>
           </Card>
-          
+
           {/* Item 4: Image */}
           <div className="rounded-md overflow-hidden shadow-xl h-full bg-card/80">
             <Image
-              src="https://placehold.co/600x400.png" 
+              src="https://placehold.co/600x400.png"
               alt="Technology Sector Visual"
-              width={600} 
-              height={400} 
+              width={600}
+              height={400}
               className="rounded-md object-cover w-full h-full"
               data-ai-hint="medical scan"
             />

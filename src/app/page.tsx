@@ -17,43 +17,43 @@ const topSectorsData: SectorData[] = [
     currentValue: 22,
     comparisonValue: 15,
     valueUnit: '%',
-    iconName: 'Trophy', // Updated icon
+    iconName: 'Trophy',
     topCompanies: ['Ginko (150%)', 'Freepik (120%)', 'Billtrust (110%)'],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
   },
   {
-    id: 'health',
+    id: 'market-insights',
     name: 'Market Insights',
-    performanceMetricName: '5-Year Growth*',
+    performanceMetricName: 'YoY Growth',
     currentValue: 22,
-    comparisonValue: 15,
+    comparisonValue: 15, // Assuming a similar comparison baseline for "% vs Market"
     valueUnit: '%',
-    iconName: 'TrendingUp', // Changed to TrendingUp
+    iconName: 'TrendingUp',
     topCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
-    description: "Leading the charge with groundbreaking innovations and strong market adoption.",
-    dataAiHint: "healthcare medical"
+    description: "Key trends and performance indicators across various market segments.",
+    dataAiHint: "market analysis"
   },
   {
-    id: 'energy',
+    id: 'segment-performance',
     name: 'Segment Performance',
     performanceMetricName: 'Capacity Increase',
     currentValue: 1500,
-    comparisonValue: 1200,
-    valueUnit: '%', // Changed to %
+    comparisonValue: 1200, // Assuming a comparison baseline
+    valueUnit: '%', // Changed to % as per image
     iconName: 'Zap',
     topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
     description: "Rapid expansion fueled by global sustainability initiatives and tech improvements.",
-    dataAiHint: "renewable energy"
+    dataAiHint: "segment growth"
   },
 ];
 
 const bubbleChartSectors: SectorData[] = [
   { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' },
-  { ...topSectorsData[1], id: 'bubble_health', iconName: 'TrendingUp' },
-  { 
-    id: 'bubble_finance', 
-    name: 'FinTech', 
+  { ...topSectorsData[1], id: 'bubble_market_insights', iconName: 'TrendingUp' },
+  {
+    id: 'bubble_finance',
+    name: 'FinTech',
     performanceMetricName: 'Adoption Rate',
     currentValue: 30,
     comparisonValue: 20,
@@ -119,7 +119,7 @@ function generateRandomGrowth() {
 
 const bubbleChartData: BubbleChartDataPoint[] = [
   { id: 'tech_bubble', name: 'Technology', privatePerformance: 85, publicPerformance: 75, relativeStrength: 120, fill: 'hsl(var(--chart-1))' },
-  { id: 'health_bubble', name: 'Market Insights', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
+  { id: 'market_insights_bubble', name: 'Market Insights', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
   { id: 'finance_bubble', name: 'FinTech', privatePerformance: 78, publicPerformance: 80, relativeStrength: 105, fill: 'hsl(var(--chart-3))' },
   // Add more bubble chart data as needed
 ];
@@ -142,9 +142,9 @@ export default function HomePage() {
       </header>
 
       <main className="flex-grow">
-        {/* Section 1: Top Sector Spotlight - Best Performing */}
+        {/* Section 1: Top Sector Spotlight - Best Performing (Technology) */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} /> {/* Pass showConfetti=false */}
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
         </section>
 
         {/* Section 2: Sector Bubble Chart */}
@@ -156,12 +156,12 @@ export default function HomePage() {
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
-        {/* Section 3: Top Sector Spotlight - Second Best */}
+        {/* Section 3: Top Sector Spotlight - Market Insights */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
            <TopSectorSpotlight sector={topSectorsData[1]} />
         </section>
 
-
+        {/* Section 4: Top Sector Spotlight - Segment Performance */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
            <TopSectorSpotlight sector={topSectorsData[2]} />
         </section>
@@ -173,7 +173,7 @@ export default function HomePage() {
             <p className="text-lg text-muted-foreground">Growth Overview by Segment</p>
           </div>
           {/* Added styling for light grey background and width */}
-          <div className="bg-gray-100 p-4 rounded-lg" style={{ width: '372px' }}> 
+          <div className="bg-gray-100 p-4 rounded-lg" style={{ width: '372px' }}>
             <Table>
               <TableHeader>
                 <TableRow>
