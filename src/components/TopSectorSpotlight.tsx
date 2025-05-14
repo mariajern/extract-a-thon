@@ -35,11 +35,11 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     <div className="w-full max-w-4xl text-center flex flex-col items-center justify-center p-4">
       <div className="relative flex flex-col items-center justify-center mb-6">
         {IconToRender && (
-          <IconToRender className="w-24 h-24 md:w-32 md:h-32 text-accent" />
+          <IconToRender className={`w-24 h-24 md:w-32 md:h-32 ${sector.id === 'tech' ? 'text-[#f3fa76]' : 'text-accent'}`} />
         )}
         {sector.id === 'tech' && showConfetti && <ConfettiAnimation />}
       </div>
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 animate-fade-in-down">{sector.name}</h1>
+      <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold ${sector.id === 'tech' ? 'text-[#f3fa76]' : 'text-primary'} mb-4 animate-fade-in-down`}>{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in-up delay-200">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
 
       {!shouldShowDetailedLayout && children}
@@ -174,4 +174,3 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     </div>
   );
 }
-
