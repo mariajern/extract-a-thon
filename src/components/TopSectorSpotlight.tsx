@@ -39,7 +39,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-8">
-        {/* Column 1: Performance Metric Card + "At a glance" Card */}
+        {/* Column 1: Performance Metric Card */}
         <div className="flex flex-col gap-6 h-full">
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
             <CardHeader className="p-3">
@@ -56,71 +56,71 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
               <p className="text-xs text-muted-foreground mt-4">* Gross margin</p>
             </CardContent>
           </Card>
-
-          {/* "At a glance" Card with Image */}
-          {sector.id === 'tech' && (
-            <Card className="bg-[#85215D] text-white shadow-xl border border-[#85215D]">
-              <div className="flex flex-row items-start p-3">
-                {/* Text Content Area */}
-                <div className="flex-1 space-y-1">
-                  <CardHeader className="p-0">
-                    <CardTitle className="text-white text-2xl text-left">At a glance</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0 space-y-2 text-left">
-                    <div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span>Sector Size</span>
-                        <span className="font-semibold">10-60M EUR</span>
-                      </div>
-                      <hr className="border-white/30 my-1" />
-                    </div>
-                    <div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span>Sector companies</span>
-                        <span className="font-semibold">65+</span>
-                      </div>
-                      <hr className="border-white/30 my-1" />
-                    </div>
-                    <div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span>Investment Advisory Professionals</span>
-                        <span className="font-semibold">30+</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </div>
-
-                {/* Image Area */}
-                <div className="ml-4 flex-shrink-0">
-                  <Image
-                    src="https://placehold.co/100x120.png"
-                    alt="Technology Sector Visual"
-                    width={100}
-                    height={120}
-                    className="rounded-md object-cover"
-                    data-ai-hint="technology innovation"
-                  />
-                </div>
-              </div>
-            </Card>
-          )}
         </div>
 
-        {/* Column 2: Top EQT Sector companies Card */}
-        <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
-          <CardHeader className="p-3">
-            <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
-          </CardHeader>
-          <CardContent className="p-3 pt-0">
-            <ul className="space-y-2 text-center">
-              {sector.topCompanies.slice(0, 3).map((company) => (
-                <li key={company} className="text-lg text-foreground">{company}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        {/* Column 2: Top EQT Sector companies Card, "At a glance" Card + Image */}
+        <div className="flex flex-col gap-6 h-full">
+          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
+            <CardHeader className="p-3">
+              <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
+            </CardHeader>
+            <CardContent className="p-3 pt-0">
+              <ul className="space-y-2 text-center">
+                {sector.topCompanies.slice(0, 3).map((company) => (
+                  <li key={company} className="text-lg text-foreground">{company}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* "At a glance" Card and Image - side by side, only for tech sector */}
+          {sector.id === 'tech' && (
+            <div className="flex flex-row gap-6 items-stretch"> {/* items-stretch for equal height children */}
+              {/* "At a glance" Card */}
+              <Card className="bg-[#85215D] text-white shadow-xl border border-[#85215D] flex-1">
+                <CardHeader className="p-3">
+                  <CardTitle className="text-white text-2xl text-left">At a glance</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 pt-0 space-y-2 text-left">
+                  <div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Sector Size</span>
+                      <span className="font-semibold">10-60M EUR</span>
+                    </div>
+                    <hr className="border-white/30 my-1" />
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Sector companies</span>
+                      <span className="font-semibold">65+</span>
+                    </div>
+                    <hr className="border-white/30 my-1" />
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Investment Advisory Professionals</span>
+                      <span className="font-semibold">30+</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Image */}
+              <div className="flex-1 rounded-md overflow-hidden">
+                <Image
+                  src="https://placehold.co/600x400.png" 
+                  alt="Technology Sector Visual"
+                  width={300} 
+                  height={200}
+                  className="rounded-md object-cover w-full h-full"
+                  data-ai-hint="technology innovation"
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      
     </div>
   );
 }
+
