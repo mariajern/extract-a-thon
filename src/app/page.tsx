@@ -3,8 +3,8 @@ import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import Footer from '@/components/Footer'; // Import Footer
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
-import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react'; 
-import { Separator } from '@/components/ui/separator';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react';
 
 // Mock Data
 const topSectorsData: SectorData[] = [
@@ -15,30 +15,30 @@ const topSectorsData: SectorData[] = [
     currentValue: 22,
     comparisonValue: 15,
     valueUnit: '%',
-    iconName: 'Trophy', 
-    topCompanies: ['Innovate Corp', 'Future Solutions', 'Digital Dynamics'],
+    iconName: 'Trophy',
+    topCompanies: ['Ginko (150%)', 'Freepik (120%)', 'Billtrust (110%)'],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
   },
   {
     id: 'health',
-    name: 'Healthcare',
-    performanceMetricName: 'Investment Inflow',
-    currentValue: 580,
-    comparisonValue: 450,
-    valueUnit: 'M USD',
-    iconName: 'HeartPulse',
-    topCompanies: ['WellCare Inc.', 'VitaHealth', 'MedPioneers'],
-    description: "Significant advancements in medical tech and patient care driving sector growth.",
+    name: 'Market Insights',
+    performanceMetricName: '5-Year Growth*',
+    currentValue: 22,
+    comparisonValue: 15,
+    valueUnit: '%',
+    iconName: 'TrendingUp',
+    topCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
+    description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "healthcare medical"
   },
   {
     id: 'energy',
-    name: 'Renewable Energy',
+    name: 'Segment Performance',
     performanceMetricName: 'Capacity Increase',
     currentValue: 1500,
     comparisonValue: 1200,
-    valueUnit: 'MW',
+ valueUnit: '%',
     iconName: 'Zap',
     topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
     description: "Rapid expansion fueled by global sustainability initiatives and tech improvements.",
@@ -47,8 +47,8 @@ const topSectorsData: SectorData[] = [
 ];
 
 const bubbleChartSectors: SectorData[] = [
-  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' }, 
-  { ...topSectorsData[1], id: 'bubble_health', iconName: 'HeartPulse' }, 
+  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' },
+  { ...topSectorsData[1], id: 'bubble_health', iconName: 'TrendingUp' }, // Corrected id and iconName
   { 
     id: 'bubble_finance', 
     name: 'FinTech', 
@@ -63,11 +63,61 @@ const bubbleChartSectors: SectorData[] = [
   }
 ];
 
+const segments = [
+  'Advertising & Marketing',
+  'Artificial Intelligence & Machine Learning',
+  'Climate',
+  'Con/Prosumer Tech',
+  'Consumer',
+  'Consumer Goods',
+  'Debt investments',
+  'Digital',
+  'Digital Business Process Solution (BPS)',
+  'Digital Health',
+  'Drug Development',
+  'Ecommerce & Services',
+  'Education',
+  'Energy',
+  'Enterprise Tech',
+  'Entertainment Social',
+  'Environmental',
+  'Finance Insurance',
+  'Financial Services',
+  'HR',
+  'Health',
+  'Healthcare',
+  'Industrial Technology',
+  'Industrials',
+  'Medical Devices',
+  'Ops & Dev tools',
+  'Other',
+  'Real Estate & Construction',
+  'Resources & Construction',
+  'Scout Program',
+  'Services',
+  'Social',
+  'Software',
+  'Software Development',
+  'Tech Services',
+  'Technology',
+  'Telecom',
+  'Transport & Logistics',
+  'Transportation & Tourism',
+];
+
+// Generate data for the segment performance table
+const segmentPerformanceData = segments.map(segment => ({
+  segment, growth: generateRandomGrowth() }));
+
+function generateRandomGrowth() {
+  return Math.floor(Math.random() * (250 - (-20) + 1)) + (-20);
+}
 
 const bubbleChartData: BubbleChartDataPoint[] = [
-  { id: 'tech_bubble', name: 'Technology', privatePerformance: 85, publicPerformance: 75, relativeStrength: 120, fill: 'hsl(var(--chart-1))' },
-  { id: 'health_bubble', name: 'Healthcare', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
+  { id: 'tech_bubble', name: 'Technology', privatePerformance: 85, publicPerformance: 75, relativeStrength: 120, fill: 'hsl(var(--chart-1))', width: 372, height: 185 },
+  { id: 'health_bubble', name: 'Market Insights', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
   { id: 'finance_bubble', name: 'FinTech', privatePerformance: 78, publicPerformance: 80, relativeStrength: 105, fill: 'hsl(var(--chart-3))' },
+  // Add more bubble chart data as needed
 ];
 
 export default function HomePage() {
@@ -82,18 +132,22 @@ export default function HomePage() {
           <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
-          <Separator className="my-6 sm:my-8 h-1 bg-muted-foreground" />
         </div>
       </header>
 
       <main className="flex-grow">
         {/* Section 1: Top Sector Spotlight - Best Performing */}
-        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+        <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative overflow-hidden">
           <TopSectorSpotlight sector={topSectorsData[0]} />
         </section>
-        
+
+        {/* Section 3: Top Sector Spotlight - Second Best */}
+        <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background overflow-hidden">
+           <TopSectorSpotlight sector={topSectorsData[1]} />
+        </section>
+
         {/* Section 2: Sector Bubble Chart */}
-        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+        <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background overflow-hidden">
           <div className="text-center mb-8">
             <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Sector Landscape</h2>
             <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
@@ -101,17 +155,38 @@ export default function HomePage() {
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
-        {/* Section 3: Top Sector Spotlight - Second Best */}
-        <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
-           <TopSectorSpotlight sector={topSectorsData[1]} />
-        </section>
-        
-        {/* Section 4: Top Sector Spotlight - Third Best */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
            <TopSectorSpotlight sector={topSectorsData[2]} />
         </section>
+
+        {/* Section 5: Segment Performance Table */}
+        <section className="w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-2">Segment Performance</h2>
+            <p className="text-lg text-muted-foreground">Growth Overview by Segment</p>
+          </div>
+          {/* Added styling for light grey background and width */}
+          <div className="bg-gray-100 p-4 rounded-lg" style={{ width: '372px' }}> 
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Segments</TableHead>
+                  <TableHead>Growth</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {segmentPerformanceData.map(({ segment, growth }) => (
+                  <TableRow key={segment}>
+                    <TableCell className="font-medium">{segment}</TableCell>
+                    <TableCell>{growth}%</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </section>
       </main>
-      
+
       <Footer />
     </div>
   );
