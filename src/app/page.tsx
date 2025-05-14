@@ -72,7 +72,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-col bg-background text-foreground">
       {/* Page Header */}
-      <header className="py-12 sm:py-16 text-center bg-secondary">
+      <header className="py-12 sm:py-16 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race

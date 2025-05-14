@@ -25,8 +25,8 @@
     --muted: 0 0% 90%; /* Lighter gray for general muted element backgrounds */
     --muted-foreground: 31 8% 37%; /* HEX #655E56 for muted text (subtitles) */
 
-    --accent: 176 100% 33%; /* EQT Teal - kept for now, ensure contrast */
-    --accent-foreground: 0 0% 100%; /* White - kept */
+    --accent: 172 45% 26%; /* HEX #26615a - New Green/Teal Shade */
+    --accent-foreground: 0 0% 100%; /* White - kept, should contrast well */
 
     --destructive: 0 70% 50%; /* Red - kept */
     --destructive-foreground: 0 0% 98%; /* Near White - kept */
@@ -35,12 +35,12 @@
     --border: 0 0% 85%; /* Neutral Gray Border */
 
     --input: 0 0% 100%; /* White input background for clarity */
-    --ring: 176 100% 43%; /* EQT Teal (brighter for focus) - kept */
+    --ring: 172 45% 36%; /* Brighter version of new accent for focus */
 
     --radius: 0.5rem; /* Standard ShadCN radius */
 
     /* Chart Colors - Assumed to be on white card backgrounds */
-    --chart-1: 176 100% 33%;  /* EQT Teal */
+    --chart-1: 172 45% 26%;  /* New Accent Green/Teal */
     --chart-2: 210 100% 28%;  /* EQT Blue */
     --chart-3: 195 80% 50%;   /* Complementary Brighter Blue */
     --chart-4: 45 100% 50%;   /* Gold/Yellow Accent */
@@ -51,10 +51,10 @@
     --sidebar-foreground: 0 0% 0%; /* Black */
     --sidebar-primary: 210 100% 18%; /* EQT Dark Blue */
     --sidebar-primary-foreground: 0 0% 98%; /* Near White */
-    --sidebar-accent: 176 100% 33%; /* EQT Teal */
+    --sidebar-accent: 172 45% 26%; /* New Accent Green/Teal */
     --sidebar-accent-foreground: 0 0% 100%; /* White */
     --sidebar-border: 0 0% 88%; /* Slightly darker gray for sidebar border */
-    --sidebar-ring: 176 100% 43%; /* EQT Teal */
+    --sidebar-ring: 172 45% 36%; /* Brighter version of new accent */
   }
 }
 
