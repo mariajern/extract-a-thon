@@ -1,15 +1,15 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
-import Footer from '@/components/Footer'; // Import Footer
+import Footer from '@/components/Footer';
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
 import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react';
-import ConfettiAnimation from '@/components/ConfettiAnimation'; // Import ConfettiAnimation
+import ConfettiAnimation from '@/components/ConfettiAnimation';
 
 // Mock Data
 const topSectorsData: SectorData[] = [
@@ -30,7 +30,7 @@ const topSectorsData: SectorData[] = [
     name: 'Market Insights',
     performanceMetricName: 'YoY Growth',
     currentValue: 22,
-    comparisonValue: 15, // Assuming a similar comparison baseline for "% vs Market"
+    comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
     topCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
@@ -42,8 +42,8 @@ const topSectorsData: SectorData[] = [
     name: 'Segment Performance',
     performanceMetricName: 'Capacity Increase',
     currentValue: 1500,
-    comparisonValue: 1200, // Assuming a comparison baseline
-    valueUnit: '%', // Changed to % as per image
+    comparisonValue: 1200,
+    valueUnit: '%',
     iconName: 'Zap',
     topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
     description: "Growth Overview by Segment",
@@ -119,7 +119,6 @@ const bubbleChartData: BubbleChartDataPoint[] = [
   { id: 'tech_bubble', name: 'Technology', privatePerformance: 85, publicPerformance: 75, relativeStrength: 120, fill: 'hsl(var(--chart-1))' },
   { id: 'market_insights_bubble', name: 'Market Insights', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
   { id: 'finance_bubble', name: 'FinTech', privatePerformance: 78, publicPerformance: 80, relativeStrength: 105, fill: 'hsl(var(--chart-3))' },
-  // Add more bubble chart data as needed
 ];
 
 export default function HomePage() {
@@ -130,13 +129,24 @@ export default function HomePage() {
       segment, growth: generateRandomGrowth()
     }));
     setSegmentPerformanceData(data);
-  }, []); // Empty dependency array ensures this runs once on mount (client-side)
+  }, []);
+
+  const sortedSegmentData = useMemo(() => {
+    return [...segmentPerformanceData].sort((a, b) => b.growth - a.growth);
+  }, [segmentPerformanceData]);
+
+  const topPerformingSegments = useMemo(() => {
+    return sortedSegmentData.slice(0, 15);
+  }, [sortedSegmentData]);
+
+  const leastPerformingSegments = useMemo(() => {
+    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth);
+  }, [sortedSegmentData]);
 
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <ConfettiAnimation /> {/* Render confetti directly here for testing */}
-      {/* Page Header */}
+      <ConfettiAnimation />
       <header className="py-12 sm:py-16 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-header-main-title mb-4 animate-fade-in-down">
@@ -150,12 +160,10 @@ export default function HomePage() {
       </header>
 
       <main className="flex-grow">
-        {/* Section 1: Top Sector Spotlight - Best Performing (Technology) */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
           <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
         </section>
 
-        {/* Section 2: Sector Bubble Chart */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
           <div className="text-center mb-8">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">Sector Landscape</h2>
@@ -164,41 +172,62 @@ export default function HomePage() {
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
-        {/* Section 3: Top Sector Spotlight - Market Insights */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
            <TopSectorSpotlight sector={topSectorsData[1]} />
         </section>
 
-        {/* Section 4: Top Sector Spotlight - Segment Performance & Table */}
         <section className="w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
            <TopSectorSpotlight sector={topSectorsData[2]} />
-           {/* Table for Segment Performance */}
-           <div className="mt-8 bg-gray-100 p-4 rounded-lg shadow-lg" style={{ width: '372px' }}> {/* Added shadow-lg and mt-8 */}
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-muted-foreground">Segments</TableHead>
-                  <TableHead className="text-muted-foreground text-right">Growth</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {segmentPerformanceData.length > 0 ? (
-                  segmentPerformanceData.map(({ segment, growth }) => (
-                    <TableRow key={segment}>
-                      <TableCell className="font-medium text-foreground">{segment}</TableCell>
-                      <TableCell className="text-right text-foreground">{growth}%</TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={2} className="text-center text-muted-foreground py-10">
-                      Loading segment data...
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
+           
+           <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto">
+             {segmentPerformanceData.length === 0 ? (
+                <div className="w-full text-center text-muted-foreground py-10 col-span-1 md:col-span-2">
+                  Loading segment data...
+                </div>
+             ) : (
+               <>
+                <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 15 Segments</h3>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-muted-foreground">Segments</TableHead>
+                        <TableHead className="text-muted-foreground text-right">Growth</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {topPerformingSegments.map(({ segment, growth }) => (
+                        <TableRow key={segment}>
+                          <TableCell className="font-medium text-foreground">{segment}</TableCell>
+                          <TableCell className="text-right text-foreground">{growth}%</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+
+                <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Bottom 15 Segments</h3>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-muted-foreground">Segments</TableHead>
+                        <TableHead className="text-muted-foreground text-right">Growth</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {leastPerformingSegments.map(({ segment, growth }) => (
+                        <TableRow key={segment}>
+                          <TableCell className="font-medium text-foreground">{segment}</TableCell>
+                          <TableCell className="text-right text-foreground">{growth}%</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+               </>
+             )}
+           </div>
         </section>
       </main>
 
