@@ -11,6 +11,7 @@ import ConfettiAnimation from './ConfettiAnimation'; // Import ConfettiAnimation
 interface TopSectorSpotlightProps {
   sector: SectorData;
   showConfetti?: boolean; // Optional prop to control confetti
+  children?: React.ReactNode; // Allow children to be passed
 }
 
 const iconComponents: Record<string, LucideIcon> = {
@@ -19,10 +20,10 @@ const iconComponents: Record<string, LucideIcon> = {
   Zap,
   Landmark,
   Trophy,
-  TrendingUp, // Added TrendingUp
+  TrendingUp,
 };
 
-export default function TopSectorSpotlight({ sector, showConfetti = true }: TopSectorSpotlightProps) {
+export default function TopSectorSpotlight({ sector, showConfetti = true, children }: TopSectorSpotlightProps) {
   const performanceChange = sector.currentValue - sector.comparisonValue;
   const isPositiveChange = performanceChange >= 0;
   const valueSuffix = sector.valueUnit || "";
@@ -36,11 +37,13 @@ export default function TopSectorSpotlight({ sector, showConfetti = true }: TopS
         {IconToRender && (
           <IconToRender className="w-24 h-24 md:w-32 md:h-32 text-accent" />
         )}
-        {/* Conditionally render confetti for the 'tech' sector IF showConfetti is true */}
         {sector.id === 'tech' && showConfetti && <ConfettiAnimation />}
       </div>
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
+
+      {/* Render children here for the default layout, if provided */}
+      {!shouldShowDetailedLayout && children}
 
       {shouldShowDetailedLayout ? (
         // 2x2 Grid for Tech Sector
@@ -124,7 +127,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true }: TopS
           </div>
         </div>
       ) : (
-        // Default layout for other sectors
+        // Default layout for other sectors (children will be rendered above this if provided)
         <div className="w-full flex flex-col md:flex-row gap-6 mt-8 max-w-3xl">
           <div className="w-full flex-1 flex flex-col gap-6">
             <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">

@@ -144,7 +144,7 @@ export default function HomePage() {
   }, [sortedSegmentData]);
 
   const leastPerformingSegments = useMemo(() => {
-    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth); // Sorts already negative numbers correctly (least growth first)
+    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth);
   }, [sortedSegmentData]);
 
 
@@ -165,7 +165,7 @@ export default function HomePage() {
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} />
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={false} />
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
@@ -179,13 +179,13 @@ export default function HomePage() {
         </section>
 
         <section className="w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background">
-           <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto mb-12">
+           <TopSectorSpotlight sector={topSectorsData[2]}>
              {segmentPerformanceData.length === 0 ? (
                 <div className="w-full text-center text-muted-foreground py-10 col-span-1 md:col-span-2">
                   Loading segment data...
                 </div>
              ) : (
-               <>
+               <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto mb-12">
                 <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
                   <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 15 Segments</h3>
                   <Table>
@@ -237,10 +237,9 @@ export default function HomePage() {
                     </TableBody>
                   </Table>
                 </div>
-               </>
+               </div>
              )}
-           </div>
-           <TopSectorSpotlight sector={topSectorsData[2]} />
+           </TopSectorSpotlight>
         </section>
       </main>
 
