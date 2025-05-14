@@ -37,14 +37,14 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-8"> {/* Changed max-w-2xl to max-w-3xl */}
         <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
-          <CardHeader>
+          <CardHeader className="p-3"> {/* Adjusted padding */}
             <CardTitle className="text-primary flex items-center justify-center text-2xl">
               {sector.performanceMetricName}
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-center">
+          <CardContent className="text-center p-3 pt-0"> {/* Adjusted padding */}
             <p className="text-5xl font-bold text-accent">{sector.currentValue}{valueSuffix}</p>
             <p className={`text-lg flex items-center justify-center mt-2 ${isPositiveChange ? 'text-accent' : 'text-destructive'}`}>
               {isPositiveChange ? <TrendingUp className="mr-2 h-5 w-5" /> : <TrendingDown className="mr-2 h-5 w-5" />}
@@ -54,10 +54,10 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
           </CardContent>
         </Card>
         <Card className="bg-card/80 backdrop-blur-sm shadow-xl">
-          <CardHeader>
+          <CardHeader className="p-3"> {/* Adjusted padding */}
             <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-3 pt-0"> {/* Adjusted padding */}
             <ul className="space-y-2 text-center">
               {sector.topCompanies.slice(0, 3).map((company) => (
                 <li key={company} className="text-lg text-foreground">{company}</li>
