@@ -42,7 +42,7 @@ export default function InsightSummary({ input, title = "AI Powered Insights" }:
         <CardTitle className="text-xl text-primary flex items-center">
           {isLoading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
           {error && <AlertCircle className="mr-2 h-5 w-5 text-destructive" />}
-          {!isLoading && !error && summary && <CheckCircle className="mr-2 h-5 w-5 text-green-500" />}
+          {!isLoading && !error && summary && <CheckCircle className="mr-2 h-5 w-5 text-accent" />}
           {title}
         </CardTitle>
         <CardDescription className="text-muted-foreground">

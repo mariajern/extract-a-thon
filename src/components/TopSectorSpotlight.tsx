@@ -1,7 +1,7 @@
 "use client";
 
 import type { SectorData } from '@/lib/types';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Removed CardDescription as it's not used
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
@@ -13,7 +13,7 @@ const iconComponents: Record<string, LucideIcon> = {
   Cpu,
   HeartPulse,
   Zap,
-  Landmark, // Added Landmark for completeness, though not directly used by topSectorsData in page.tsx
+  Landmark,
   // Add other icons here if SectorData might use them with this component
 };
 
@@ -39,7 +39,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-5xl font-bold text-accent">{sector.currentValue}{valueSuffix}</p>
-            <p className={`text-lg flex items-center justify-center mt-2 ${isPositiveChange ? 'text-green-400' : 'text-red-400'}`}>
+            <p className={`text-lg flex items-center justify-center mt-2 ${isPositiveChange ? 'text-accent' : 'text-destructive'}`}>
               {isPositiveChange ? <TrendingUp className="mr-2 h-5 w-5" /> : <TrendingDown className="mr-2 h-5 w-5" />}
               {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}{valueSuffix} vs comparison
             </p>
@@ -64,7 +64,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
         alt={`${sector.name} sector visualization placeholder`}
         width={800}
         height={400}
-        className="rounded-lg shadow-2xl object-cover opacity-30 mix-blend-overlay"
+        className="rounded-lg shadow-2xl object-cover opacity-10 mix-blend-multiply"
         data-ai-hint={sector.dataAiHint}
       />
     </div>
