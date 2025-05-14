@@ -74,3 +74,20 @@
   }
   /* Subtitles on the main page use text-muted-foreground, which is now #655E56 */
 }
+
+/* Confetti Animations */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) rotateZ(360deg); /* Fall further and spin more */
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-spin {
+  from { transform: rotateY(0deg) rotateX(0deg) rotateZ(var(--initial-z-rotation, 0deg)); }
+  to   { transform: rotateY(360deg) rotateX(360deg) rotateZ(calc(var(--initial-z-rotation, 0deg) + 360deg)); }
+}

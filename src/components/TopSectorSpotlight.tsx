@@ -2,8 +2,9 @@
 
 import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, type LucideIcon } from 'lucide-react';
+import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react'; // Added Trophy
 import Image from 'next/image';
+import ConfettiAnimation from './ConfettiAnimation'; // Import ConfettiAnimation
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
@@ -14,7 +15,7 @@ const iconComponents: Record<string, LucideIcon> = {
   HeartPulse,
   Zap,
   Landmark,
-  // Add other icons here if SectorData might use them with this component
+  Trophy, // Added Trophy to the map
 };
 
 export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) {
@@ -26,7 +27,13 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
 
   return (
     <div className="w-full max-w-4xl text-center flex flex-col items-center justify-center p-4">
-      {IconToRender && <IconToRender className="w-24 h-24 md:w-32 md:h-32 text-accent mb-6" />}
+      <div className="relative flex flex-col items-center justify-center mb-6"> {/* Wrapper for icon and confetti */}
+        {IconToRender && (
+          <IconToRender className="w-24 h-24 md:w-32 md:h-32 text-accent" />
+        )}
+        {sector.id === 'tech' && <ConfettiAnimation />}
+      </div>
+      
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4">{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
       

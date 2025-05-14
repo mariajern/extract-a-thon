@@ -3,7 +3,7 @@ import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import InsightSummary from '@/components/InsightSummary';
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
-import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory } from 'lucide-react'; // Imports remain for other uses or future use
+import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react'; // Added Trophy
 import { Separator } from '@/components/ui/separator';
 
 // Mock Data
@@ -15,10 +15,10 @@ const topSectorsData: SectorData[] = [
     currentValue: 22,
     comparisonValue: 15,
     valueUnit: '%',
-    iconName: 'Cpu',
+    iconName: 'Trophy', // Changed from 'Cpu' to 'Trophy'
     topCompanies: ['Innovate Corp', 'Future Solutions', 'Digital Dynamics'],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
-    dataAiHint: "technology future"
+    dataAiHint: "technology award"
   },
   {
     id: 'health',
@@ -47,7 +47,8 @@ const topSectorsData: SectorData[] = [
 ];
 
 const bubbleChartSectors: SectorData[] = [
-  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Cpu' }, 
+  // Ensure Trophy is available if bubbleChartSectors uses iconName from topSectorsData directly or has its own mapping
+  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' }, // Tech uses Trophy here too
   { ...topSectorsData[1], id: 'bubble_health', iconName: 'HeartPulse' }, 
   { 
     id: 'bubble_finance', 
