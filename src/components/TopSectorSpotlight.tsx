@@ -3,7 +3,7 @@
 import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react'; // Added Trophy
-import Image from 'next/image';
+// import Image from 'next/image'; // Removed
 import ConfettiAnimation from './ConfettiAnimation'; // Import ConfettiAnimation
 
 interface TopSectorSpotlightProps {
@@ -66,14 +66,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
         </Card>
       </div>
       
-      <Image
-        src={`https://placehold.co/800x400.png`}
-        alt={`${sector.name} sector visualization placeholder`}
-        width={800}
-        height={400}
-        className="rounded-lg shadow-2xl object-cover opacity-10 mix-blend-multiply"
-        data-ai-hint={sector.dataAiHint}
-      />
+      {/* Image component removed */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
-import InsightSummary from '@/components/InsightSummary';
+// import InsightSummary from '@/components/InsightSummary'; // Removed
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Cpu, HeartPulse, Landmark, TrendingUp, Zap, ShoppingBag, Factory, Trophy } from 'lucide-react'; // Added Trophy
 import { Separator } from '@/components/ui/separator';
@@ -90,52 +90,19 @@ export default function HomePage() {
       {/* Section 1: Top Sector Spotlight - Best Performing */}
       <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative overflow-hidden">
         <TopSectorSpotlight sector={topSectorsData[0]} />
-        <div className="absolute bottom-4 sm:bottom-8 w-full max-w-lg sm:max-w-xl md:max-w-2xl px-4">
-          <InsightSummary 
-            input={{
-              sector: topSectorsData[0].name,
-              performanceMetric: topSectorsData[0].performanceMetricName,
-              currentValue: topSectorsData[0].currentValue,
-              comparisonValue: topSectorsData[0].comparisonValue,
-              topCompanies: topSectorsData[0].topCompanies,
-            }}
-            title={`AI Insights: ${topSectorsData[0].name}`}
-          />
-        </div>
+        {/* InsightSummary removed from here */}
       </section>
 
       {/* Section 2: Top Sector Spotlight - Second Best */}
       <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
          <TopSectorSpotlight sector={topSectorsData[1]} />
-         <div className="absolute bottom-4 sm:bottom-8 w-full max-w-lg sm:max-w-xl md:max-w-2xl px-4">
-          <InsightSummary
-            input={{
-              sector: topSectorsData[1].name,
-              performanceMetric: topSectorsData[1].performanceMetricName,
-              currentValue: topSectorsData[1].currentValue,
-              comparisonValue: topSectorsData[1].comparisonValue,
-              topCompanies: topSectorsData[1].topCompanies,
-            }}
-            title={`AI Insights: ${topSectorsData[1].name}`}
-           />
-        </div>
+         {/* InsightSummary removed from here */}
       </section>
       
       {/* Section 3: Top Sector Spotlight - Third Best */}
       <section className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-12 relative bg-background overflow-hidden">
          <TopSectorSpotlight sector={topSectorsData[2]} />
-         <div className="absolute bottom-4 sm:bottom-8 w-full max-w-lg sm:max-w-xl md:max-w-2xl px-4">
-          <InsightSummary
-            input={{
-              sector: topSectorsData[2].name,
-              performanceMetric: topSectorsData[2].performanceMetricName,
-              currentValue: topSectorsData[2].currentValue,
-              comparisonValue: topSectorsData[2].comparisonValue,
-              topCompanies: topSectorsData[2].topCompanies,
-            }}
-            title={`AI Insights: ${topSectorsData[2].name}`}
-           />
-        </div>
+         {/* InsightSummary removed from here */}
       </section>
 
       {/* Section 4: Sector Bubble Chart */}
@@ -145,18 +112,7 @@ export default function HomePage() {
           <p className="text-lg text-muted-foreground">Top Sectors vs. Public Market Performance</p>
         </div>
         <SectorBubbleChart data={bubbleChartData} />
-        <div className="absolute bottom-4 sm:bottom-8 w-full max-w-lg sm:max-w-xl md:max-w-2xl px-4 mt-4">
-          <InsightSummary
-            input={{
-              sector: "Overall Market (Top 3)", // Generic sector name for bubble chart
-              performanceMetric: "Relative Strength and Performance",
-              currentValue: bubbleChartData.reduce((sum, item) => sum + item.privatePerformance, 0) / bubbleChartData.length, // Average private performance
-              comparisonValue: bubbleChartData.reduce((sum, item) => sum + item.publicPerformance, 0) / bubbleChartData.length, // Average public performance
-              topCompanies: bubbleChartSectors.flatMap(s => s.topCompanies).slice(0,3), // Sample companies from sectors in chart
-            }}
-            title="AI Insights: Sector Comparison"
-          />
-        </div>
+        {/* InsightSummary removed from here */}
       </section>
     </main>
   );
