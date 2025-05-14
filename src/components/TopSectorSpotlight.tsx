@@ -102,14 +102,14 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
           </Card>
 
           {/* Item 4: Image */}
-          <div className="rounded-md overflow-hidden shadow-xl h-full bg-card/80"> {/* Added bg for consistency if image doesn't load */}
+          <div className="rounded-md overflow-hidden shadow-xl h-full bg-card/80">
             <Image
               src="https://placehold.co/600x400.png" 
               alt="Technology Sector Visual"
-              width={300} 
-              height={200} // These are for aspect ratio hint, actual size controlled by CSS
+              width={600} 
+              height={400} 
               className="rounded-md object-cover w-full h-full"
-              data-ai-hint="technology innovation"
+              data-ai-hint="medical scan"
             />
           </div>
         </div>
@@ -117,8 +117,8 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
         // Original 2-column layout for other sectors
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-8">
           {/* Column 1: Performance Metric Card */}
-          <div className="flex flex-col gap-6 h-full"> {/* Ensured h-full for consistency */}
-            <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full"> {/* Ensured h-full */}
+          <div className="flex flex-col gap-6 h-full">
+            <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
               <CardHeader className="p-3">
                 <CardTitle className="text-primary flex items-center justify-center text-2xl">
                   {sector.performanceMetricName}
@@ -136,7 +136,7 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
           </div>
 
           {/* Column 2: Top EQT Sector companies Card */}
-          <div className="flex flex-col gap-6 h-full"> {/* Ensured h-full for consistency */}
+          <div className="flex flex-col gap-6 h-full">
             <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
               <CardHeader className="p-3">
                 <CardTitle className="text-primary text-2xl text-center">Top EQT Sector companies</CardTitle>
@@ -155,4 +155,3 @@ export default function TopSectorSpotlight({ sector }: TopSectorSpotlightProps) 
     </div>
   );
 }
-
