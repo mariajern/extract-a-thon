@@ -13,7 +13,7 @@ const ConfettiAnimation = () => {
     width: undefined,
     height: undefined,
   });
-  const [isRunning, setIsRunning] = useState(true);
+  // Removed isRunning state for continuous emission for now
 
   useEffect(() => {
     function handleResize() {
@@ -27,13 +27,9 @@ const ConfettiAnimation = () => {
       window.addEventListener('resize', handleResize);
       handleResize(); // Set initial size
 
-      const timer = setTimeout(() => {
-        setIsRunning(false); // Stop emitting new confetti after 5 seconds
-      }, 5000);
-
+      // Timer that controlled isRunning has been removed
       return () => {
         window.removeEventListener('resize', handleResize);
-        clearTimeout(timer);
       };
     }
   }, []);
@@ -46,7 +42,7 @@ const ConfettiAnimation = () => {
     <ReactConfetti
       width={windowSize.width}
       height={windowSize.height}
-      numberOfPieces={isRunning ? 250 : 0} // Emit 250 pieces initially, then 0
+      numberOfPieces={250} // Always emit 250 pieces
       recycle={false} // Pieces disappear when off-screen
       gravity={0.15} // A bit more gravity
       initialVelocityX={{ min: -10, max: 10 }} // Wider horizontal spread
@@ -59,7 +55,7 @@ const ConfettiAnimation = () => {
         w: 20, // Small source area width
         h: 20, // Small source area height
       }}
-      run={true} // Keep run=true; numberOfPieces controls emission.
+      run={true} // Keep run=true; this ensures the animation system is active.
       style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1000, pointerEvents: 'none' }}
     />
   );
