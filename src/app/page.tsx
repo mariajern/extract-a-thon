@@ -47,8 +47,8 @@ const topSectorsData: SectorData[] = [
 ];
 
 const bubbleChartSectors: SectorData[] = [
-  { ...topSectorsData[0], id: 'bubble_tech' }, // Technology - will inherit iconName: 'Cpu'
-  { ...topSectorsData[1], id: 'bubble_health' }, // Healthcare - will inherit iconName: 'HeartPulse'
+  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Cpu' }, 
+  { ...topSectorsData[1], id: 'bubble_health', iconName: 'HeartPulse' }, 
   { 
     id: 'bubble_finance', 
     name: 'FinTech', 
@@ -82,7 +82,7 @@ export default function HomePage() {
           <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
-          <Separator className="my-6 sm:my-8 h-1" /> {/* Updated Separator */}
+          <Separator className="my-6 sm:my-8 h-1 bg-muted-foreground" />
         </div>
       </header>
 
