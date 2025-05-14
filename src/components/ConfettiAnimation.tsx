@@ -5,7 +5,8 @@
 import { useState, useEffect } from 'react';
 import ReactConfetti from 'react-confetti';
 
-const CONFETTI_COLORS = ['hsl(var(--accent))', 'hsl(var(--primary))', '#FF00FF', '#FFFF00', '#FF0000']; // Teal, Dark Blue, Magenta, Yellow, Red
+// Updated to use hex colors directly
+const CONFETTI_COLORS = ['#26615a', '#002D5B', '#FF00FF', '#FFFF00', '#FF0000']; // Teal, Dark Blue, Magenta, Yellow, Red
 
 const ConfettiAnimation = () => {
   const [windowSize, setWindowSize] = useState<{ width: number | undefined; height: number | undefined }>({
