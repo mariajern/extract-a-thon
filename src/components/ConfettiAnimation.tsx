@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 
 const CONFETTI_COLORS = ['hsl(var(--accent))', 'hsl(var(--primary))', '#FF00FF']; // Teal, Dark Blue, Magenta
 const NUM_CONFETTI = 60; // Increased for more visual impact
-const FALL_DISTANCE = 180; // How far confetti falls in pixels
+// FALL_DISTANCE constant is not directly used by CSS keyframes, but represents intended design.
+// The actual fall distance is controlled by `translateY` in `globals.css @keyframes confetti-fall`.
 
 interface ConfettiPiece {
   id: number;
@@ -19,7 +20,7 @@ const ConfettiAnimation = () => {
   useEffect(() => {
     const newPieces: ConfettiPiece[] = [];
     for (let i = 0; i < NUM_CONFETTI; i++) {
-      const fallDuration = Math.random() * 1.5 + 1.5; // 1.5s to 3.0s
+      const fallDuration = Math.random() * 2 + 2.5; // 2.5s to 4.5s (increased duration)
       const spinDuration = Math.random() * 2 + 1.5;  // 1.5s to 3.5s
       const delay = Math.random() * 0.5; // Stagger start times slightly
 
@@ -43,29 +44,24 @@ const ConfettiAnimation = () => {
     }
     setPieces(newPieces);
 
-    // Clean up pieces after animation to prevent too many elements
-    const timer = setTimeout(() => {
-        setPieces([]);
-    }, Math.max(...newPieces.map(p => parseFloat(p.style.animationDuration?.split(',')[0] || '3') * 1000 + parseFloat(p.style.animationDelay?.split(',')[0] || '0.5') * 1000)) + 500);
-
-
-    return () => clearTimeout(timer);
+    // Removed cleanup timer to make confetti persist
+    // const timer = setTimeout(() => {
+    //     setPieces([]);
+    // }, Math.max(...newPieces.map(p => parseFloat(p.style.animationDuration?.split(',')[0] || '3') * 1000 + parseFloat(p.style.animationDelay?.split(',')[0] || '0.5') * 1000)) + 500);
+    // return () => clearTimeout(timer);
   }, []);
-
-  // No need to render <style jsx global> as keyframes are in globals.css
-  // No need for initial check if pieces.length === 0 if we position correctly
 
   return (
     <div 
       style={{ 
         position: 'absolute', 
-        top: 'calc(50% - 100px)', // Center vertically around the icon container's midpoint
-        left: 'calc(50% - 100px)', // Center horizontally
+        top: 'calc(50% - 50px)', // Adjusted: from -100px to -50px to raise origin (closer to cup's mouth)
+        left: 'calc(50% - 100px)', 
         width: '200px', 
-        height: '1px', // Effectively a line from which confetti "explodes"
+        height: '1px', 
         pointerEvents: 'none', 
         zIndex: 10,
-        overflow: 'visible' // Allow confetti to fly out
+        overflow: 'visible'
       }}
       aria-hidden="true"
     >

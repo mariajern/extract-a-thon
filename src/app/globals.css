@@ -82,8 +82,8 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(150px) rotateZ(360deg); /* Fall further and spin more */
-    opacity: 0;
+    transform: translateY(500px) rotateZ(360deg); /* Increased fall distance */
+    opacity: 1; /* Persist: remain visible */
   }
 }
 
