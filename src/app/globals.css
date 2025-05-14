@@ -4,56 +4,58 @@
 
 @layer base {
   :root {
-    /* EQT Inspired Light Theme */
-    --background: 0 0% 100%; /* White */
-    --foreground: 210 15% 20%; /* Dark Slate Grey/EQT Text Color */
+    /* Updated Theme based on user request */
+    --background: 309 40% 77%; /* HEX #DEACD6 */
+    --foreground: 0 0% 0%;    /* Black */
 
-    --card: 210 20% 97%; /* Very Light Grey-Blue, for subtle card background */
-    --card-foreground: 210 15% 20%; /* Dark Slate Grey */
+    --card: 0 0% 100%; /* White for cards, for contrast against pink bg */
+    --card-foreground: 0 0% 0%; /* Black text on cards */
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 210 15% 20%; /* Dark Slate Grey */
+    --popover: 0 0% 100%; /* White for popovers */
+    --popover-foreground: 0 0% 0%; /* Black text on popovers */
 
-    --primary: 210 100% 18%; /* EQT Dark Blue */
-    --primary-foreground: 0 0% 98%; /* Near White/Very Light Grey */
+    --primary: 210 100% 18%; /* EQT Dark Blue - kept for now, ensure contrast */
+    --primary-foreground: 0 0% 98%; /* Near White - kept */
 
-    --secondary: 210 60% 95%; /* Lighter, softer blue-grey for secondary elements */
-    --secondary-foreground: 210 100% 18%; /* EQT Dark Blue */
+    /* Secondary for header background, etc. Needs to work with new bg & fg */
+    /* Using a light gray for the header background to make it distinct */
+    --secondary: 0 0% 96%; /* Light Gray */
+    --secondary-foreground: 0 0% 0%; /* Black text on secondary */
 
-    --muted: 210 15% 65%; /* Mid Grey for muted text */
-    --muted-foreground: 210 15% 45%; /* Darker Grey for muted elements */
+    --muted: 0 0% 90%; /* Lighter gray for general muted element backgrounds */
+    --muted-foreground: 31 8% 37%; /* HEX #655E56 for muted text (subtitles) */
 
-    --accent: 176 100% 33%; /* EQT Teal */
-    --accent-foreground: 0 0% 100%; /* White */
+    --accent: 176 100% 33%; /* EQT Teal - kept for now, ensure contrast */
+    --accent-foreground: 0 0% 100%; /* White - kept */
 
-    --destructive: 0 70% 50%; /* Red */
-    --destructive-foreground: 0 0% 98%; /* Near White */
+    --destructive: 0 70% 50%; /* Red - kept */
+    --destructive-foreground: 0 0% 98%; /* Near White - kept */
 
-    --border: 210 20% 88%; /* Light Grey-Blue Border */
-    --input: 0 0% 100%; /* White input background */
-    --ring: 176 100% 43%; /* EQT Teal (brighter for focus) */
+    /* Border that contrasts with the new background and card elements */
+    --border: 0 0% 85%; /* Neutral Gray Border */
+
+    --input: 0 0% 100%; /* White input background for clarity */
+    --ring: 176 100% 43%; /* EQT Teal (brighter for focus) - kept */
 
     --radius: 0.5rem; /* Standard ShadCN radius */
 
-    /* Chart Colors - Tech Savvy & Sporty */
+    /* Chart Colors - Assumed to be on white card backgrounds */
     --chart-1: 176 100% 33%;  /* EQT Teal */
-    --chart-2: 210 100% 28%;  /* EQT Blue (slightly lighter for chart) */
+    --chart-2: 210 100% 28%;  /* EQT Blue */
     --chart-3: 195 80% 50%;   /* Complementary Brighter Blue */
-    --chart-4: 45 100% 50%;   /* Gold/Yellow Accent (sporty/premium) */
-    --chart-5: 280 70% 55%;   /* Vibrant Purple (tech/contrast) */
+    --chart-4: 45 100% 50%;   /* Gold/Yellow Accent */
+    --chart-5: 280 70% 55%;   /* Vibrant Purple */
     
-    /* Sidebar variables */
-    --sidebar-background: 210 30% 96%; /* Slightly different light grey/blue for sidebar */
-    --sidebar-foreground: 210 15% 20%;
-    --sidebar-primary: 210 100% 18%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 176 100% 33%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 210 20% 85%;
-    --sidebar-ring: 176 100% 43%;
+    /* Sidebar variables - adjust for new theme */
+    --sidebar-background: 0 0% 98%; /* Very light gray for sidebar */
+    --sidebar-foreground: 0 0% 0%; /* Black */
+    --sidebar-primary: 210 100% 18%; /* EQT Dark Blue */
+    --sidebar-primary-foreground: 0 0% 98%; /* Near White */
+    --sidebar-accent: 176 100% 33%; /* EQT Teal */
+    --sidebar-accent-foreground: 0 0% 100%; /* White */
+    --sidebar-border: 0 0% 88%; /* Slightly darker gray for sidebar border */
+    --sidebar-ring: 176 100% 43%; /* EQT Teal */
   }
-
-  /* No .dark class needed as we are defining a light theme as default */
 }
 
 @layer base {
@@ -61,8 +63,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans; /* Apply font-sans here */
     scroll-behavior: smooth;
   }
-  /* Remove explicit font-family to let Next/font handle it */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground; /* Ensure headings use the main foreground color (black) */
+  }
+  /* Subtitles on the main page use text-muted-foreground, which is now #655E56 */
 }

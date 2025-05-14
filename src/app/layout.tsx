@@ -1,16 +1,13 @@
 import type {Metadata} from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google'; // Import Noto Sans JP
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+// Configure Noto Sans JP
+const notoSansJP = Noto_Sans_JP({
+  variable: '--font-noto-sans-jp',
+  subsets: ['latin'], // Using 'latin' for broader character support; use 'japanese' if needed
+  weight: ['400', '700'], // Regular and Bold weights
 });
 
 export const metadata: Metadata = {
@@ -25,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+      <body className={`${notoSansJP.variable} font-sans antialiased bg-background text-foreground`}>
         {children}
         <Toaster />
       </body>
