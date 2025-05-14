@@ -82,7 +82,7 @@ export default function HomePage() {
           <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-6">
             Tracking the Front-Runners and Laggards in the Market Arena
           </p>
-          <Separator className="my-6 sm:my-8 max-w-2xl mx-auto" />
+          <Separator className="my-6 sm:my-8 h-1" /> {/* Updated Separator */}
         </div>
       </header>
 
