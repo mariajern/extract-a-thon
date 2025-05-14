@@ -74,7 +74,7 @@ export default function HomePage() {
       {/* Page Header */}
       <header className="py-12 sm:py-16 text-center">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-header-main-title mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
           <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200">

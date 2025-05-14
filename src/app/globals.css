@@ -55,6 +55,9 @@
     --sidebar-accent-foreground: 0 0% 100%; /* White */
     --sidebar-border: 0 0% 88%; /* Slightly darker gray for sidebar border */
     --sidebar-ring: 172 45% 36%; /* Brighter version of new accent */
+
+    /* Custom color for the main page header title */
+    --header-main-title-foreground: 63 94% 72%; /* HEX #F3FA76 */
   }
 }
 
