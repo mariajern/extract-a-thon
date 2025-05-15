@@ -33,7 +33,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
-    topCompanies: bubbleChartData[1].topPerformingCompanies || [],
+    topCompanies: bubbleChartData[0].topPerformingCompanies || [], // Updated to fetch from bubbleChartData[0]
     description: "Median market growth for the top segments*.",
     dataAiHint: "market analysis"
   },
