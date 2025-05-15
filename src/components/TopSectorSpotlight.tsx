@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
-import ConfettiAnimation from './ConfettiAnimation';
+import ConfettiAnimation from './ConfettiAnimation'; // Ensure ConfettiAnimation is imported
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
@@ -174,3 +174,4 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     </div>
   );
 }
+
