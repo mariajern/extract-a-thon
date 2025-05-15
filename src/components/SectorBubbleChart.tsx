@@ -40,10 +40,10 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
             <XAxis 
               type="number" 
               dataKey="privatePerformance" 
-              name="Private Co. Performance" 
+              name="EQT owned Company Performance" 
               unit="" 
               stroke="hsl(var(--muted-foreground))"
-              label={{ value: "Private Company Performance Index", position: 'insideBottom', offset: -20, fill: "hsl(var(--foreground))" }}
+              label={{ value: "EQT owned Company Performance", position: 'insideBottom', offset: -20, fill: "hsl(var(--foreground))" }}
             />
             <YAxis 
               type="number" 
@@ -63,7 +63,7 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
                   return (
                     <ChartTooltipContent className="bg-popover text-popover-foreground rounded-lg shadow-lg p-3">
                       <p className="font-bold text-lg" style={{color: dataPoint.fill}}>{dataPoint.name}</p>
-                      <p>Private Performance: {dataPoint.privatePerformance}</p>
+                      <p>EQT owned Performance: {dataPoint.privatePerformance}</p>
                       <p>Public Performance: {dataPoint.publicPerformance}</p>
                       <p>Relative Strength: {dataPoint.relativeStrength}</p>
                     </ChartTooltipContent>
@@ -93,3 +93,4 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
     </div>
   );
 }
+
