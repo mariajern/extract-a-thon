@@ -48,10 +48,10 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
             <YAxis 
               type="number" 
               dataKey="publicPerformance" 
-              name="Market Co. Performance" 
+              name="Market Company Performance" 
               unit="" 
               stroke="hsl(var(--muted-foreground))"
-              label={{ value: "Market Company Performance", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))" }}
+              label={{ value: "Market Company Performance", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))", textAnchor: 'middle' }}
               domain={[0, 25]} // Adjusted Y-axis domain
             />
             <ZAxis type="number" dataKey="relativeStrength" range={[100, 2000]} name="Relative Strength" unit="" />

@@ -98,7 +98,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                 {sector.currentValue}
                 {valueSuffix}
               </p>
-              <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
+              <p className="text-xs text-muted-foreground mt-2">*Median EBITDA Margin</p>
             </CardContent>
           </Card>
 
