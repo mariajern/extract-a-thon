@@ -156,7 +156,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       ) : (
         // Default layout for other sectors (e.g., Market Insights, Segment Performance)
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mt-8">
-          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full flex-1">
+          <Card className="bg-card shadow-xl h-full flex-1">
             <CardHeader className="p-3">
               <CardTitle className="text-primary text-2xl text-center">
                 {sector.performanceMetricName}
@@ -170,7 +170,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
             </CardContent>
           </Card>
-          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full flex-1">
+          <Card className="bg-card shadow-xl h-full flex-1">
             <CardHeader className="p-3">
               <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
             </CardHeader>
