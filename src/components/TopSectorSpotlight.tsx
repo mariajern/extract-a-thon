@@ -142,7 +142,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           {/* Item 4: Image */}
           <div className="rounded-md overflow-hidden shadow-xl h-full bg-card">
             <Image
-              src="https://cdn.sanity.io/images/30p7so6x/eqt-public-web-prod/1c988d29e40b825a30e57791b750b0ecf607d130-1495x1017.webp?rect=71,0,1355,1017&w=1142&h=857&auto=format"
+              src="https://cdn.sanity.io/images/30p7so6x/eqt-public-web-prod/1c988d29e40b825a30e57791b27a7f0447463530-1495x1017.webp?rect=71,0,1355,1017&w=1142&h=857&auto=format"
               alt="Technology Sector Visual"
               width={600}
               height={400}
@@ -154,8 +154,8 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       ) : (
         // Default layout for other sectors (e.g., Market Insights, Sector Performance)
         <>
-          {!shouldShowDetailedLayout && children} {/* Render children like tables here */}
-
+          {!shouldShowDetailedLayout && sector.id !== 'segment-performance' && children} {/* Render children like tables here, but not for segment-performance which renders its own cards now */}
+          
           {/* Conditionally render the two cards only if sector.id is NOT 'segment-performance' */}
           {sector.id !== 'segment-performance' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mt-8">
@@ -187,9 +187,10 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
               </Card>
             </div>
           )}
+           {/* Render children specifically for segment-performance AFTER its specific content if any, or if it's the main place for its children */}
+           {sector.id === 'segment-performance' && children}
         </>
       )}
     </div>
   );
 }
-
