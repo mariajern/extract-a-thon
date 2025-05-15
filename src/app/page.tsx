@@ -21,7 +21,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'Trophy',
-    topCompanies: bubbleChartData[0].topEQTPerformingCompanies || [], // Use EQT specific companies for tech
+    topCompanies: bubbleChartData[0].topEQTPerformingCompanies || [],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
   },
@@ -33,7 +33,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
-    topCompanies: bubbleChartData[0].topPerformingCompanies || [], // Updated to fetch from bubbleChartData[0]
+    topCompanies: bubbleChartData[0].topPerformingCompanies || [],
     description: "Median market growth for the top segments*.",
     dataAiHint: "market analysis"
   },
@@ -70,10 +70,10 @@ export default function HomePage() {
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
-          <Separator className="my-8 h-1 bg-muted-foreground" />
-           <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
+          <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
             Understand how EQT sectors and portfolio companies perform against market competitors
           </p>
+          <Separator className="my-8 h-1 bg-muted-foreground" />
         </div>
       </header>
 
@@ -94,7 +94,7 @@ export default function HomePage() {
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 text-center">Sector Landscape</h2>
-            <p className="text-lg text-muted-foreground text-center mb-8">Top Sectors vs. Public Market Performance</p>
+            <p className="text-lg text-muted-foreground text-center mb-8">EQT owned vs. Market Performance</p>
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
@@ -165,3 +165,4 @@ export default function HomePage() {
     </div>
   );
 }
+
