@@ -5,10 +5,11 @@ import { useState, useEffect, useMemo } from 'react';
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import Footer from '@/components/Footer';
-import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
+import type { SectorData } from '@/lib/types'; // BubbleChartDataPoint is no longer needed here
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
 import { ArrowDown } from 'lucide-react';
+import { bubbleChartData } from '@/lib/chart-config'; // Import configured chart data
 
 // Mock Data
 const topSectorsData: SectorData[] = [
@@ -50,9 +51,12 @@ const topSectorsData: SectorData[] = [
   },
 ];
 
+// This variable seems related but not directly used by SectorBubbleChart.
+// If it's part of the bubble chart configuration, it might also need to move.
+// For now, leaving it as the request was specific to the chart's direct data.
 const bubbleChartSectors: SectorData[] = [
-  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy' },
-  { ...topSectorsData[1], id: 'bubble_market_insights', iconName: 'TrendingUp' },
+  { ...topSectorsData[0], id: 'bubble_tech', iconName: 'Trophy', dataAiHint: "technology award" },
+  { ...topSectorsData[1], id: 'bubble_market_insights', iconName: 'TrendingUp', dataAiHint: "market analysis" },
   {
     id: 'bubble_finance',
     name: 'FinTech',
@@ -117,12 +121,8 @@ function generateRandomGrowth() {
   return Math.floor(Math.random() * (250 - (-20) + 1)) + (-20);
 }
 
-
-const bubbleChartData: BubbleChartDataPoint[] = [
-  { id: 'tech_bubble', name: 'Technology', privatePerformance: 85, publicPerformance: 75, relativeStrength: 120, fill: 'hsl(var(--chart-1))' },
-  { id: 'market_insights_bubble', name: 'Market Insights', privatePerformance: 70, publicPerformance: 65, relativeStrength: 90, fill: 'hsl(var(--chart-2))' },
-  { id: 'finance_bubble', name: 'FinTech', privatePerformance: 78, publicPerformance: 80, relativeStrength: 105, fill: 'hsl(var(--chart-3))' },
-];
+// bubbleChartData is now imported from '@/lib/chart-config.ts'
+// const bubbleChartData: BubbleChartDataPoint[] = [ ... ]; // Removed local definition
 
 export default function HomePage() {
   const [segmentPerformanceData, setSegmentPerformanceData] = useState<{segment: string, growth: number}[]>([]);
@@ -149,7 +149,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="bg-card py-24 sm:py-32 text-center"> {/* White background */}
+      <header className="bg-card py-24 sm:py-32 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race
@@ -161,14 +161,13 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* "The best performing sector is ..." now outside the header, on the main page background */}
       <div className="container mx-auto px-4 text-center">
         <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary text-center mt-6 mb-32 animate-fade-in-up delay-300">
           The best performing sector is ...
         </p>
       </div>
 
-      <div className="text-center mb-4"> {/* Container for the arrow */}
+      <div className="text-center mb-4">
         <ArrowDown className="w-24 h-24 text-[#deacd6] mx-auto invisible" />
       </div>
 
@@ -256,4 +255,3 @@ export default function HomePage() {
     </div>
   );
 }
-
