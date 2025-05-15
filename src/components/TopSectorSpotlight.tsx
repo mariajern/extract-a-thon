@@ -106,10 +106,10 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
             </CardContent>
           </Card>
 
-          {/* Item 2: Top EQT Sector companies Card */}
+          {/* Item 2: Top Segment companies Card */}
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
             <CardHeader className="p-3">
-              <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
+              <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
             </CardHeader>
             <CardContent className="p-3 pt-0">
               <ul className="space-y-2 text-center">
@@ -192,7 +192,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
             <div className="flex-1">
               <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
                 <CardHeader className="p-3">
-                  <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
+                  <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 pt-0">
                   <ul className="space-y-2 text-center">
