@@ -1,12 +1,13 @@
 
 "use client";
 
+import { useRef, useEffect, useState } from 'react';
 import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
-import ConfettiAnimation from './ConfettiAnimation'; // Ensure ConfettiAnimation is imported
+import ConfettiAnimation from './ConfettiAnimation';
 
 interface TopSectorSpotlightProps {
   sector: SectorData;
@@ -31,13 +32,42 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
   const IconToRender = sector.iconName ? iconComponents[sector.iconName] : null;
   const shouldShowDetailedLayout = sector.id === 'tech';
 
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // Unobserve after it becomes visible
+        }
+      },
+      {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.1, // 10% of the item is visible
+      }
+    );
+
+    if (spotlightRef.current) {
+      observer.observe(spotlightRef.current);
+    }
+
+    return () => {
+      if (spotlightRef.current) {
+        observer.unobserve(spotlightRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="w-full max-w-4xl text-center flex flex-col items-center justify-center p-4">
+    <div ref={spotlightRef} className="w-full max-w-4xl text-center flex flex-col items-center justify-center p-4">
       <div className="relative flex flex-col items-center justify-center mb-6">
         {IconToRender && (
           <IconToRender className={`w-24 h-24 md:w-32 md:h-32 ${sector.id === 'tech' ? 'text-[#f3fa76]' : 'text-accent'}`} />
         )}
-        {sector.id === 'tech' && showConfetti && <ConfettiAnimation />}
+        {sector.id === 'tech' && showConfetti && isVisible && <ConfettiAnimation />}
       </div>
       <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold ${sector.id === 'tech' ? 'text-[#f3fa76]' : 'text-primary'} mb-4 animate-fade-in-down`}>{sector.name}</h1>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in-up delay-200">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
@@ -126,50 +156,53 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           </div>
         </div>
       ) : (
-        // Default layout for other sectors (children will be rendered above this if provided)
-        <div className="w-full flex flex-col md:flex-row gap-6 mt-8 max-w-3xl">
-          <div className="flex-1">
-            <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
-              <CardHeader className="p-3">
-                <CardTitle className="text-primary text-2xl text-center">
-                  {sector.performanceMetricName}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center p-3 pt-0">
-                <p className="text-5xl font-bold text-accent">
-                  {sector.currentValue}
-                  {valueSuffix}
-                </p>
-                <p
-                  className={`text-lg flex items-center justify-center mt-2 ${
-                    isPositiveChange ? "text-accent" : "text-destructive"
-                  }`}
-                >
-                  {isPositiveChange ? (
-                    <TrendingUp className="mr-2 h-5 w-5" />
-                  ) : (
-                    <TrendingDown className="mr-2 h-5 w-5" />
-                  )}
-                  {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}
-                  {valueSuffix} vs Market
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
-              </CardContent>
-            </Card>
+        // Default layout for other sectors
+        <>
+          {children}
+          <div className="w-full flex flex-col md:flex-row gap-6 mt-8 max-w-3xl">
+            <div className="flex-1">
+              <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
+                <CardHeader className="p-3">
+                  <CardTitle className="text-primary text-2xl text-center">
+                    {sector.performanceMetricName}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center p-3 pt-0">
+                  <p className="text-5xl font-bold text-accent">
+                    {sector.currentValue}
+                    {valueSuffix}
+                  </p>
+                  <p
+                    className={`text-lg flex items-center justify-center mt-2 ${
+                      isPositiveChange ? "text-accent" : "text-destructive"
+                    }`}
+                  >
+                    {isPositiveChange ? (
+                      <TrendingUp className="mr-2 h-5 w-5" />
+                    ) : (
+                      <TrendingDown className="mr-2 h-5 w-5" />
+                    )}
+                    {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}
+                    {valueSuffix} vs Market
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="flex-1">
+              <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
+                <CardHeader className="p-3">
+                  <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 pt-0">
+                  <ul className="space-y-2 text-center">
+                    {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-          <div className="flex-1">
-            <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
-              <CardHeader className="p-3">
-                <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3 pt-0">
-                <ul className="space-y-2 text-center">
-                  {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        </>
       )}
     </div>
   );
