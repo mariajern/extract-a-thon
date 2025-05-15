@@ -140,11 +140,11 @@ export default function HomePage() {
   }, [segmentPerformanceData]);
 
   const topPerformingSegments = useMemo(() => {
-    return sortedSegmentData.slice(0, 15);
+    return sortedSegmentData.slice(0, 3);
   }, [sortedSegmentData]);
 
   const leastPerformingSegments = useMemo(() => {
-    return sortedSegmentData.slice(-15).sort((a, b) => a.growth - b.growth);
+    return sortedSegmentData.slice(-3).sort((a, b) => a.growth - b.growth);
   }, [sortedSegmentData]);
 
 
@@ -156,7 +156,7 @@ export default function HomePage() {
             The EQT Sector Race
           </h1>
           <Separator className="my-8 h-1 bg-muted-foreground" />
-          <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
+           <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
             Understand how EQT sectors and portfolio companies perform against market competitors
           </p>
         </div>
@@ -196,7 +196,7 @@ export default function HomePage() {
              ) : (
                <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto mb-12">
                 <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
-                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 15 Segments</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 3 Segments</h3>
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -222,7 +222,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
-                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Bottom 15 Segments</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Bottom 3 Segments</h3>
                   <Table>
                     <TableHeader>
                       <TableRow>
