@@ -21,4 +21,5 @@ export interface BubbleChartDataPoint {
   relativeStrength: number; // z-axis / bubble size (e.g., market cap, growth rate)
   fill: string; // color for the bubble
   topPerformingCompanies?: string[]; // Array of strings like "CompanyName (Growth%)"
+  topEQTPerformingCompanies?: string[]; // Array of strings for EQT specific companies
 }

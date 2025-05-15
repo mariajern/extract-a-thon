@@ -9,7 +9,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 12,
     relativeStrength: 120,
     fill: 'hsl(var(--chart-1))',
-    topPerformingCompanies: ['Ginko (150%)', 'Freepik (120%)', 'Billtrust (110%)']
+    topPerformingCompanies: ['Ginko (150%)', 'Freepik (120%)', 'Billtrust (110%)'],
+    topEQTPerformingCompanies: ['EQT Fiber (200%)', 'EQT Towers (180%)', 'EQT Sat (160%)']
   },
   {
     id: 'market_insights_bubble',
@@ -18,7 +19,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 8,
     relativeStrength: 90,
     fill: 'hsl(var(--chart-2))',
-    topPerformingCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)']
+    topPerformingCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
+    topEQTPerformingCompanies: ['EQT Cloud Solutions (210%)', 'EQT Data Analytics (190%)', 'EQT AI Platform (170%)']
   },
   {
     id: 'finance_bubble',
@@ -27,7 +29,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 12,
     relativeStrength: 105,
     fill: 'hsl(var(--chart-3))',
-    topPerformingCompanies: ['Media Streaming Co (140%)', 'Entertainment Hub (122%)', 'Gaming World (105%)']
+    topPerformingCompanies: ['Media Streaming Co (140%)', 'Entertainment Hub (122%)', 'Gaming World (105%)'],
+    topEQTPerformingCompanies: ['EQT Studios (155%)', 'EQT Gaming (135%)', 'EQT Media Network (115%)']
   },
   {
     id: 'sector4',
@@ -36,7 +39,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 12,
     relativeStrength: 105,
     fill: 'hsl(var(--chart-3))',
-    topPerformingCompanies: ['Global Bank Corp (95%)', 'SecureTrust Bank (88%)', 'DigitalFin (80%)']
+    topPerformingCompanies: ['Global Bank Corp (95%)', 'SecureTrust Bank (88%)', 'DigitalFin (80%)'],
+    topEQTPerformingCompanies: ['EQT Investment Bank (100%)', 'EQT Retail Bank (90%)', 'EQT Digital Finance (85%)']
   },
   {
     id: 'sector5',
@@ -45,7 +49,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 12,
     relativeStrength: 105,
     fill: 'hsl(var(--chart-3))',
-    topPerformingCompanies: ['ConnectAll (110%)', 'SpeedLink (102%)', 'DataWave (98%)']
+    topPerformingCompanies: ['ConnectAll (110%)', 'SpeedLink (102%)', 'DataWave (98%)'],
+    topEQTPerformingCompanies: ['EQT Infra Comms (115%)', 'EQT Mobile (105%)', 'EQT Broadband (95%)']
   },
   {
     id: 'sector6',
@@ -54,7 +59,8 @@ export const bubbleChartData: BubbleChartDataPoint[] = [
     publicPerformance: 12,
     relativeStrength: 105,
     fill: 'hsl(var(--chart-3))',
-    topPerformingCompanies: ['InsurePro (70%)', 'SafeGuard (65%)', 'Assurance Plus (60%)']
+    topPerformingCompanies: ['InsurePro (70%)', 'SafeGuard (65%)', 'Assurance Plus (60%)'],
+    topEQTPerformingCompanies: ['EQT InsureTech (75%)', 'EQT Life Assurance (68%)', 'EQT General Insurance (62%)']
   }
   // You can add or modify more data points here
 ];

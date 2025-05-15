@@ -21,7 +21,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'Trophy',
-    topCompanies: bubbleChartData[0].topPerformingCompanies || [],
+    topCompanies: bubbleChartData[0].topEQTPerformingCompanies || [], // Use EQT specific companies for tech
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
   },
@@ -39,14 +39,14 @@ const topSectorsData: SectorData[] = [
   },
   {
     id: 'segment-performance',
-    name: 'Sector Performance', // Changed from "Segment Performance"
+    name: 'Sector Performance',
     performanceMetricName: 'Capacity Increase',
-    currentValue: 1500, // This value seems specific to this card and not directly from bubbleChartData
+    currentValue: 1500,
     comparisonValue: 1200,
     valueUnit: '%',
     iconName: 'Zap',
-    topCompanies: bubbleChartData[2].topPerformingCompanies || [], // Configured, though card not shown for this ID
-    description: "Growth Overview by Sector", // Changed from "Segment"
+    topCompanies: bubbleChartData[2].topPerformingCompanies || [],
+    description: "Growth Overview by Sector",
     dataAiHint: "segment growth"
   },
 ];
