@@ -173,7 +173,7 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="text-center mb-2"> {/* Container for the arrow */}
+      <div className="text-center mb-4"> {/* Container for the arrow */}
         <ArrowDown className="w-24 h-24 text-[#deacd6] mx-auto invisible" />
       </div>
 
