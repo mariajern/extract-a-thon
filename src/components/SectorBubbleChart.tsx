@@ -52,7 +52,7 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
               unit="" 
               stroke="hsl(var(--muted-foreground))"
               label={{ value: "Public Company Performance Index", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))" }}
-              domain={[0, 40]} // Adjusted Y-axis domain
+              domain={[0, 25]} // Adjusted Y-axis domain
             />
             <ZAxis type="number" dataKey="relativeStrength" range={[100, 2000]} name="Relative Strength" unit="" />
             <ChartTooltip
