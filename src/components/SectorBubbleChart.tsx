@@ -1,3 +1,4 @@
+
 "use client"
 
 import type { BubbleChartDataPoint } from "@/lib/types";
@@ -23,14 +24,15 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
   }, {} as ChartConfig);
 
   return (
-    <div className="w-full h-[500px] max-w-4xl p-4 bg-card/50 backdrop-blur-sm rounded-lg shadow-xl">
+    // Changed background to bg-card (white) and removed backdrop-blur
+    <div className="w-full h-[500px] max-w-4xl p-4 bg-card rounded-lg shadow-xl">
       <ChartContainer config={chartConfig} className="w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart
             margin={{
-              top: 40, // Increased top margin for title/labels
+              top: 40, 
               right: 20,
-              bottom: 40, // Increased bottom margin for axis labels
+              bottom: 40, 
               left: 20,
             }}
           >
@@ -39,7 +41,7 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
               type="number" 
               dataKey="privatePerformance" 
               name="Private Co. Performance" 
-              unit="" // Add unit if applicable
+              unit="" 
               stroke="hsl(var(--muted-foreground))"
               label={{ value: "Private Company Performance Index", position: 'insideBottom', offset: -20, fill: "hsl(var(--foreground))" }}
             />
@@ -47,7 +49,7 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
               type="number" 
               dataKey="publicPerformance" 
               name="Public Co. Performance" 
-              unit="" // Add unit if applicable
+              unit="" 
               stroke="hsl(var(--muted-foreground))"
               label={{ value: "Public Company Performance Index", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))" }}
             />
@@ -73,8 +75,9 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
               <Scatter key={point.id} name={point.name} data={[point]} fill={point.fill} shape="circle">
                  <LabelList 
                   dataKey="name" 
-                  position="center" 
-                  fill="hsl(var(--popover-foreground))" 
+                  position="top" // Changed position from "center" to "top"
+                  offset={8} // Added offset to push label slightly above the bubble
+                  fill="hsl(var(--foreground))" // Changed fill to main foreground color
                   fontSize={10}
                   formatter={(value: string) => {
                     // Shorten name if too long for bubble
