@@ -83,13 +83,11 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
         </p>
       )}
 
-      {!shouldShowDetailedLayout && children}
-
       {shouldShowDetailedLayout ? (
         // 2x2 Grid for Tech Sector
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-8">
           {/* Item 1: Performance Metric Card */}
-          <Card className="bg-card shadow-xl h-full"> {/* Updated background */}
+          <Card className="bg-card shadow-xl h-full">
             <CardHeader className="p-3">
               <CardTitle className="text-primary text-2xl text-center">
                 {sector.performanceMetricName}
@@ -105,7 +103,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           </Card>
 
           {/* Item 2: Top EQT Sector companies Card */}
-          <Card className="bg-card shadow-xl h-full"> {/* Updated background */}
+          <Card className="bg-card shadow-xl h-full">
             <CardHeader className="p-3">
               <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
             </CardHeader>
@@ -142,7 +140,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           </Card>
 
           {/* Item 4: Image */}
-          <div className="rounded-md overflow-hidden shadow-xl h-full bg-card"> {/* Changed to bg-card for consistency */}
+          <div className="rounded-md overflow-hidden shadow-xl h-full bg-card">
             <Image
               src="https://cdn.sanity.io/images/30p7so6x/eqt-public-web-prod/d3f84a87cc042159bbc29b5b0690c258d1200071-2500x1667.jpg?rect=140,0,2221,1667&w=1142&h=857&auto=format"
               alt="Technology Sector Visual"
@@ -155,32 +153,39 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
         </div>
       ) : (
         // Default layout for other sectors (e.g., Market Insights, Segment Performance)
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mt-8">
-          <Card className="bg-card shadow-xl h-full flex-1">
-            <CardHeader className="p-3">
-              <CardTitle className="text-primary text-2xl text-center">
-                {sector.performanceMetricName}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center p-3 pt-0">
-              <p className="text-5xl font-bold text-accent">
-                {sector.currentValue}
-                {valueSuffix}
-              </p>
-               <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-card shadow-xl h-full flex-1">
-            <CardHeader className="p-3">
-              <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
-            </CardHeader>
-            <CardContent className="p-3 pt-0">
-              <ul className="space-y-2 text-center">
-                {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
+        <>
+          {!shouldShowDetailedLayout && children} {/* Render children like tables here */}
+
+          {/* Conditionally render the two cards only if sector.id is NOT 'segment-performance' */}
+          {sector.id !== 'segment-performance' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mt-8">
+              <Card className="bg-card shadow-xl h-full flex-1">
+                <CardHeader className="p-3">
+                  <CardTitle className="text-primary text-2xl text-center">
+                    {sector.performanceMetricName}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center p-3 pt-0">
+                  <p className="text-5xl font-bold text-accent">
+                    {sector.currentValue}
+                    {valueSuffix}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-card shadow-xl h-full flex-1">
+                <CardHeader className="p-3">
+                  <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 pt-0">
+                  <ul className="space-y-2 text-center">
+                    {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
