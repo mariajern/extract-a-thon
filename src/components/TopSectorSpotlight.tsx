@@ -56,7 +56,10 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       if (spotlightRef.current && observer) {
         // Check if spotlightRef.current still exists before unobserving
         // It might be null if the component unmounts quickly
-        observer.unobserve(spotlightRef.current);
+        // Ensure observer.unobserve is only called if spotlightRef.current is not null
+        if (spotlightRef.current) {
+            observer.unobserve(spotlightRef.current);
+        }
       }
     };
   }, []);
@@ -75,7 +78,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
         {sector.description || `Key insights for the ${sector.name} sector.`}
       </p>
       {sector.id === 'market-insights' && (
-        <p className="text-xs text-muted-foreground mb-8 animate-fade-in-up delay-200">
+        <p className="text-xs text-muted-foreground mt-1 mb-8 animate-fade-in-up delay-200">
           *Based on public data
         </p>
       )}
@@ -84,7 +87,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
 
       {shouldShowDetailedLayout ? (
         // 2x2 Grid for Tech Sector
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-8">
           {/* Item 1: Performance Metric Card */}
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
             <CardHeader className="p-3">
@@ -151,10 +154,34 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           </div>
         </div>
       ) : (
-        // Default layout for other sectors
-        <>
-          {/* Cards were removed from here based on previous request */}
-        </>
+        // Default layout for other sectors (e.g., Market Insights, Segment Performance)
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mt-8">
+          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full flex-1">
+            <CardHeader className="p-3">
+              <CardTitle className="text-primary text-2xl text-center">
+                {sector.performanceMetricName}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-center p-3 pt-0">
+              <p className="text-5xl font-bold text-accent">
+                {sector.currentValue}
+                {valueSuffix}
+              </p>
+              {/* Adding footnote for consistency with tech sector's performance card if applicable */}
+               <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full flex-1">
+            <CardHeader className="p-3">
+              <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
+            </CardHeader>
+            <CardContent className="p-3 pt-0">
+              <ul className="space-y-2 text-center">
+                {sector.topCompanies.slice(0, 3).map((companyName) => (<li key={companyName} className="text-lg text-foreground">{companyName}</li>))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );
