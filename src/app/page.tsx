@@ -150,15 +150,12 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* ConfettiAnimation removed from here */}
       <header className="bg-card py-24 sm:py-32 text-center"> {/* White background */}
         <div className="container mx-auto px-4">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 animate-fade-in-down">
             The EQT Sector Race
           </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground animate-fade-in-up delay-200 mb-2">
-            Tracking the Front-Runners and Laggards in the Market Arena
-          </p>
+          {/* Subtitle removed here */}
           <Separator className="my-8 h-1 bg-muted-foreground" />
           <p className="text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-300 mt-6">
             Understand how EQT sectors and portfolio companies perform against market competitors
@@ -179,7 +176,7 @@ export default function HomePage() {
 
       <main className="flex-grow">
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative">
-          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} /> {/* showConfetti re-enabled */}
+          <TopSectorSpotlight sector={topSectorsData[0]} showConfetti={true} />
         </section>
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
