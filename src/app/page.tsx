@@ -10,7 +10,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Separator } from "@/components/ui/separator";
 import { ArrowDown } from 'lucide-react';
 import { bubbleChartData } from '@/lib/chart-config'; // Import configured chart data
-import ConfettiAnimation from '@/components/ConfettiAnimation';
 
 
 // Mock Data
@@ -31,7 +30,7 @@ const topSectorsData: SectorData[] = [
     id: 'market-insights',
     name: `${bubbleChartData[0].name} Market Insights`, // Updated name
     performanceMetricName: 'YoY Growth',
-    currentValue: 22,
+    currentValue: bubbleChartData[1].publicPerformance, // Use publicPerformance from the second entry
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
