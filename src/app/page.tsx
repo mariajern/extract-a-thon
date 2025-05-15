@@ -41,7 +41,7 @@ const topSectorsData: SectorData[] = [
   },
   {
     id: 'segment-performance',
-    name: 'Segment Performance',
+    name: 'Segment Performance', // Ensuring this is "Segment Performance"
     performanceMetricName: 'Capacity Increase',
     currentValue: 1500,
     comparisonValue: 1200,
@@ -200,7 +200,7 @@ export default function HomePage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground font-semibold">Segments</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold text-left">Segments</TableHead>
                         <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -226,7 +226,7 @@ export default function HomePage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground font-semibold">Segments</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold text-left">Segments</TableHead>
                         <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
