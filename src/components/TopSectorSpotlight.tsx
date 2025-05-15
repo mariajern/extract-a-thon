@@ -89,19 +89,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                 {sector.currentValue}
                 {valueSuffix}
               </p>
-              <p
-                className={`text-lg flex items-center justify-center mt-2 ${
-                  isPositiveChange ? "text-accent" : "text-destructive"
-                }`}
-              >
-                {isPositiveChange ? (
-                  <TrendingUp className="mr-2 h-5 w-5" />
-                ) : (
-                  <TrendingDown className="mr-2 h-5 w-5" />
-                )}
-                {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}
-                {valueSuffix} vs Market
-              </p>
+              {/* Removed trend icon, percentage change, and vs Market text */}
               <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
             </CardContent>
           </Card>
@@ -172,19 +160,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                     {sector.currentValue}
                     {valueSuffix}
                   </p>
-                  <p
-                    className={`text-lg flex items-center justify-center mt-2 ${
-                      isPositiveChange ? "text-accent" : "text-destructive"
-                    }`}
-                  >
-                    {isPositiveChange ? (
-                      <TrendingUp className="mr-2 h-5 w-5" />
-                    ) : (
-                      <TrendingDown className="mr-2 h-5 w-5" />
-                    )}
-                    {Math.abs(performanceChange).toFixed(valueSuffix === "%" ? 1 : 0)}
-                    {valueSuffix} vs Market
-                  </p>
+                  {/* Removed trend icon, percentage change, and vs Market text for default layout as well */}
                   <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
                 </CardContent>
               </Card>
