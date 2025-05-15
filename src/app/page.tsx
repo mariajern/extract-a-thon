@@ -5,17 +5,19 @@ import { useState, useEffect, useMemo } from 'react';
 import TopSectorSpotlight from '@/components/TopSectorSpotlight';
 import SectorBubbleChart from '@/components/SectorBubbleChart';
 import Footer from '@/components/Footer';
-import type { SectorData } from '@/lib/types'; // BubbleChartDataPoint is no longer needed here
+import type { SectorData } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
 import { ArrowDown } from 'lucide-react';
 import { bubbleChartData } from '@/lib/chart-config'; // Import configured chart data
+import ConfettiAnimation from '@/components/ConfettiAnimation';
+
 
 // Mock Data
 const topSectorsData: SectorData[] = [
   {
     id: 'tech',
-    name: 'Technology',
+    name: bubbleChartData[0].name, // Use name from the first entry of bubbleChartData
     performanceMetricName: '5-Year Growth*',
     currentValue: 22,
     comparisonValue: 15,
@@ -122,7 +124,6 @@ function generateRandomGrowth() {
 }
 
 // bubbleChartData is now imported from '@/lib/chart-config.ts'
-// const bubbleChartData: BubbleChartDataPoint[] = [ ... ]; // Removed local definition
 
 export default function HomePage() {
   const [segmentPerformanceData, setSegmentPerformanceData] = useState<{segment: string, growth: number}[]>([]);
