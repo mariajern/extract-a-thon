@@ -48,10 +48,10 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
             <YAxis 
               type="number" 
               dataKey="publicPerformance" 
-              name="Public Co. Performance" 
+              name="Market Co. Performance" 
               unit="" 
               stroke="hsl(var(--muted-foreground))"
-              label={{ value: "Public Company Performance Index", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))" }}
+              label={{ value: "Market Company Performance", angle: -90, position: 'insideLeft', offset: 0, fill: "hsl(var(--foreground))" }}
               domain={[0, 25]} // Adjusted Y-axis domain
             />
             <ZAxis type="number" dataKey="relativeStrength" range={[100, 2000]} name="Relative Strength" unit="" />
@@ -64,7 +64,7 @@ export default function SectorBubbleChart({ data }: SectorBubbleChartProps) {
                     <ChartTooltipContent className="bg-popover text-popover-foreground rounded-lg shadow-lg p-3">
                       <p className="font-bold text-lg" style={{color: dataPoint.fill}}>{dataPoint.name}</p>
                       <p>EQT owned Performance: {dataPoint.privatePerformance}</p>
-                      <p>Public Performance: {dataPoint.publicPerformance}</p>
+                      <p>Market Performance: {dataPoint.publicPerformance}</p>
                       <p>Relative Strength: {dataPoint.relativeStrength}</p>
                     </ChartTooltipContent>
                   );
