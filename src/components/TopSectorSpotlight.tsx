@@ -107,7 +107,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
           {/* Item 2: Top Segment companies Card */}
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
             <CardHeader className="p-3">
-              <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
+              <CardTitle className="text-primary text-2xl text-center">Top EQT Sector Companies</CardTitle>
             </CardHeader>
             <CardContent className="p-3 pt-0">
               <ul className="space-y-2 text-center">
@@ -167,7 +167,6 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                 {sector.currentValue}
                 {valueSuffix}
               </p>
-              {/* Adding footnote for consistency with tech sector's performance card if applicable */}
                <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
             </CardContent>
           </Card>
@@ -186,3 +185,4 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     </div>
   );
 }
+
