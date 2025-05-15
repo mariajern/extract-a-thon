@@ -4,7 +4,7 @@
 import { useRef, useEffect, useState } from 'react';
 import type { SectorData } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, TrendingDown, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
+import { TrendingUp, Cpu, HeartPulse, Zap, Landmark, Trophy, type LucideIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import ConfettiAnimation from './ConfettiAnimation';
@@ -55,7 +55,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
     }
 
     return () => {
-      if (spotlightRef.current) {
+      if (spotlightRef.current && observer) {
         observer.unobserve(spotlightRef.current);
       }
     };
@@ -70,7 +70,15 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
         {sector.id === 'tech' && showConfetti && isVisible && <ConfettiAnimation />}
       </div>
       <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold ${sector.id === 'tech' ? 'text-[#f3fa76]' : 'text-primary'} mb-4 animate-fade-in-down`}>{sector.name}</h1>
-      <p className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in-up delay-200">{sector.description || `Key insights for the ${sector.name} sector.`}</p>
+      
+      <p className={`text-lg sm:text-xl text-muted-foreground animate-fade-in-up delay-200 ${sector.id === 'market-insights' ? 'mb-1' : 'mb-8'}`}>
+        {sector.description || `Key insights for the ${sector.name} sector.`}
+      </p>
+      {sector.id === 'market-insights' && (
+        <p className="text-xs text-muted-foreground mb-8 animate-fade-in-up delay-200">
+          *Based on public data
+        </p>
+      )}
 
       {!shouldShowDetailedLayout && children}
 
@@ -89,7 +97,6 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                 {sector.currentValue}
                 {valueSuffix}
               </p>
-              {/* Removed trend icon, percentage change, and vs Market text */}
               <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
             </CardContent>
           </Card>
@@ -160,7 +167,6 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
                     {sector.currentValue}
                     {valueSuffix}
                   </p>
-                  {/* Removed trend icon, percentage change, and vs Market text for default layout as well */}
                   <p className="text-xs text-muted-foreground mt-2">* Gross margin</p>
                 </CardContent>
               </Card>

@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import type { SectorData, BubbleChartDataPoint } from '@/lib/types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from "@/components/ui/separator";
-// Removed ConfettiAnimation import from here as it's now in TopSectorSpotlight
 import { ArrowDown } from 'lucide-react';
 
 // Mock Data
@@ -34,7 +33,7 @@ const topSectorsData: SectorData[] = [
     valueUnit: '%',
     iconName: 'TrendingUp',
     topCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
-    description: "Median market growth for the top segments*. *Based on public data",
+    description: "Median market growth for the top segments*.",
     dataAiHint: "market analysis"
   },
   {
