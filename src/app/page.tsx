@@ -19,7 +19,7 @@ const topSectorsData: SectorData[] = [
     id: 'tech',
     name: bubbleChartData[0].name, // Use name from the first entry of bubbleChartData
     performanceMetricName: '5-Year Growth*',
-    currentValue: 22,
+    currentValue: bubbleChartData[0].privatePerformance, // Updated to use privatePerformance from chart data
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'Trophy',
