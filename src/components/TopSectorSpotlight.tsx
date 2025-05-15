@@ -175,7 +175,9 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
               </Card>
               <Card className="bg-card shadow-xl h-full flex-1">
                 <CardHeader className="p-3">
-                  <CardTitle className="text-primary text-2xl text-center">Top Segment Companies</CardTitle>
+                  <CardTitle className="text-primary text-2xl text-center">
+                    Top Sector Companies
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 pt-0">
                   <ul className="space-y-2 text-center">
