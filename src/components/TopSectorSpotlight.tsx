@@ -25,8 +25,6 @@ const iconComponents: Record<string, LucideIcon> = {
 };
 
 export default function TopSectorSpotlight({ sector, showConfetti = true, children }: TopSectorSpotlightProps) {
-  const performanceChange = sector.currentValue - sector.comparisonValue;
-  const isPositiveChange = performanceChange >= 0;
   const valueSuffix = sector.valueUnit || "";
 
   const IconToRender = sector.iconName ? iconComponents[sector.iconName] : null;
@@ -56,6 +54,8 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
 
     return () => {
       if (spotlightRef.current && observer) {
+        // Check if spotlightRef.current still exists before unobserving
+        // It might be null if the component unmounts quickly
         observer.unobserve(spotlightRef.current);
       }
     };
@@ -153,7 +153,7 @@ export default function TopSectorSpotlight({ sector, showConfetti = true, childr
       ) : (
         // Default layout for other sectors
         <>
-          {children}
+          {/* REMOVED DUPLICATE {children} RENDERING FROM HERE */}
           <div className="w-full flex flex-col md:flex-row gap-6 mt-8 max-w-3xl">
             <div className="flex-1">
               <Card className="bg-card/80 backdrop-blur-sm shadow-xl h-full">
