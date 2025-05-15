@@ -28,12 +28,12 @@ const topSectorsData: SectorData[] = [
   {
     id: 'market-insights',
     name: `${bubbleChartData[0].name} Market Insights`,
-    performanceMetricName: 'YoY Growth',
-    currentValue: bubbleChartData[1].publicPerformance,
+    performanceMetricName: '5-Year Growth*', // Changed from 'YoY Growth'
+    currentValue: bubbleChartData[1].publicPerformance, // Using publicPerformance for the second chart entry
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
-    topCompanies: bubbleChartData[0].topPerformingCompanies || [],
+    topCompanies: bubbleChartData[0].topPerformingCompanies || [], // Using topPerformingCompanies from the first chart entry
     description: "Median market growth for the top segments*.",
     dataAiHint: "market analysis"
   },
@@ -94,7 +94,7 @@ export default function HomePage() {
 
         <section className="min-h-screen w-full flex flex-col items-center justify-center py-12 px-6 sm:py-12 sm:px-12 relative bg-background">
            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 text-center">Sector Landscape</h2>
-            <p className="text-lg text-muted-foreground text-center mb-8">EQT Owned vs. Market Performance</p>
+            <p className="text-lg text-muted-foreground text-center mb-8">EQT owned vs. Market Performance</p>
           <SectorBubbleChart data={bubbleChartData} />
         </section>
 
