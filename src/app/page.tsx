@@ -207,7 +207,7 @@ export default function HomePage() {
                     <TableBody>
                       {topPerformingSegments.map(({ segment, growth }) => (
                         <TableRow key={segment}>
-                          <TableCell className="font-medium text-foreground">{segment}</TableCell>
+                          <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
                           <TableCell 
                             className={`text-right font-medium ${
                               growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
@@ -233,7 +233,7 @@ export default function HomePage() {
                     <TableBody>
                       {leastPerformingSegments.map(({ segment, growth }) => (
                         <TableRow key={segment}>
-                          <TableCell className="font-medium text-foreground">{segment}</TableCell>
+                          <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
                           <TableCell 
                             className={`text-right font-medium ${
                               growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
