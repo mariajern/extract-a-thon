@@ -174,7 +174,7 @@ export default function HomePage() {
       </div>
 
       <div className="text-center mb-2"> {/* Container for the arrow */}
-        <ArrowDown className="w-24 h-24 text-[#deacd6] mx-auto" />
+        <ArrowDown className="w-24 h-24 text-[#deacd6] mx-auto invisible" />
       </div>
 
       <main className="flex-grow">
