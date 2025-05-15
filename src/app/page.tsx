@@ -29,7 +29,7 @@ const topSectorsData: SectorData[] = [
   },
   {
     id: 'market-insights',
-    name: `Market Insights ${bubbleChartData[0].name}`, // Updated name
+    name: `${bubbleChartData[0].name} Market Insights`, // Updated name
     performanceMetricName: 'YoY Growth',
     currentValue: 22,
     comparisonValue: 15,
