@@ -21,7 +21,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'Trophy',
-    topCompanies: ['Ginko (150%)', 'Freepik (120%)', 'Billtrust (110%)'],
+    topCompanies: bubbleChartData[0].topPerformingCompanies || [],
     description: "Leading the charge with groundbreaking innovations and strong market adoption.",
     dataAiHint: "technology award"
   },
@@ -33,7 +33,7 @@ const topSectorsData: SectorData[] = [
     comparisonValue: 15,
     valueUnit: '%',
     iconName: 'TrendingUp',
-    topCompanies: ['GeneDX (1650%)', 'Rigetti (1426%)', 'D-wave Quantum (854%)'],
+    topCompanies: bubbleChartData[1].topPerformingCompanies || [],
     description: "Median market growth for the top segments*.",
     dataAiHint: "market analysis"
   },
@@ -41,11 +41,11 @@ const topSectorsData: SectorData[] = [
     id: 'segment-performance',
     name: 'Sector Performance', // Changed from "Segment Performance"
     performanceMetricName: 'Capacity Increase',
-    currentValue: 1500,
+    currentValue: 1500, // This value seems specific to this card and not directly from bubbleChartData
     comparisonValue: 1200,
     valueUnit: '%',
     iconName: 'Zap',
-    topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
+    topCompanies: bubbleChartData[2].topPerformingCompanies || [], // Configured, though card not shown for this ID
     description: "Growth Overview by Sector", // Changed from "Segment"
     dataAiHint: "segment growth"
   },
@@ -118,7 +118,7 @@ export default function HomePage() {
                       {topPerformingSectorsFromConfig.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
-                          <TableCell 
+                          <TableCell
                             className={`text-right font-medium ${
                               growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
                             }`}
@@ -144,7 +144,7 @@ export default function HomePage() {
                       {leastPerformingSectorsFromConfig.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
-                          <TableCell 
+                          <TableCell
                             className={`text-right font-medium ${
                               growth >= 0 ? 'text-accent' : 'text-[#ff6600]'
                             }`}
@@ -165,4 +165,3 @@ export default function HomePage() {
     </div>
   );
 }
-
