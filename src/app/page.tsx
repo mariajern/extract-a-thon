@@ -39,24 +39,24 @@ const topSectorsData: SectorData[] = [
   },
   {
     id: 'segment-performance',
-    name: 'Segment Performance',
+    name: 'Sector Performance', // Changed from "Segment Performance"
     performanceMetricName: 'Capacity Increase',
     currentValue: 1500,
     comparisonValue: 1200,
     valueUnit: '%',
     iconName: 'Zap',
     topCompanies: ['GreenVolt Ltd.', 'Solaris Energy', 'WindPower Co.'],
-    description: "Growth Overview by Segment",
+    description: "Growth Overview by Sector", // Changed from "Segment"
     dataAiHint: "segment growth"
   },
 ];
 
-const topPerformingSegmentsFromConfig = bubbleChartData.slice(0, 3).map(item => ({
+const topPerformingSectorsFromConfig = bubbleChartData.slice(0, 3).map(item => ({
   segment: item.name,
   growth: item.privatePerformance,
 }));
 
-const leastPerformingSegmentsFromConfig = bubbleChartData.slice(3, 6).map(item => ({
+const leastPerformingSectorsFromConfig = bubbleChartData.slice(3, 6).map(item => ({
   segment: item.name,
   growth: item.publicPerformance,
 }));
@@ -106,16 +106,16 @@ export default function HomePage() {
            <TopSectorSpotlight sector={topSectorsData[2]}>
                <div className="flex flex-col md:flex-row gap-6 mt-12 w-full max-w-4xl mx-auto mb-12">
                 <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
-                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 3 Segments</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Top 3 Sectors</h3>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground font-semibold text-left">Segments</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold text-left">Sectors</TableHead>
                         <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {topPerformingSegmentsFromConfig.map(({ segment, growth }) => (
+                      {topPerformingSectorsFromConfig.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
                           <TableCell 
@@ -132,16 +132,16 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex-1 bg-card p-4 rounded-lg shadow-xl">
-                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Bottom 3 Segments</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-center text-primary">Bottom 3 Sectors</h3>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-muted-foreground font-semibold text-left">Segments</TableHead>
+                        <TableHead className="text-muted-foreground font-semibold text-left">Sectors</TableHead>
                         <TableHead className="text-muted-foreground text-right font-semibold">Growth</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {leastPerformingSegmentsFromConfig.map(({ segment, growth }) => (
+                      {leastPerformingSectorsFromConfig.map(({ segment, growth }) => (
                         <TableRow key={segment}>
                           <TableCell className="font-medium text-foreground text-left">{segment}</TableCell>
                           <TableCell 
@@ -165,3 +165,4 @@ export default function HomePage() {
     </div>
   );
 }
+
